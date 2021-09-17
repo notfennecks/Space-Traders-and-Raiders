@@ -163,9 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Space1Font
   m_EditorClassIdentifier: 
-  hashCode: 582922052
+  hashCode: -1446627546
   material: {fileID: -1301156981516612504}
-  materialHashCode: -1832415260
+  materialHashCode: -445718458
   m_Version: 1.1.0
   m_SourceFontFileGUID: 7d9b2123b21e31e4aa3ffce9a86954ff
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 7d9b2123b21e31e4aa3ffce9a86954ff, type: 3}
