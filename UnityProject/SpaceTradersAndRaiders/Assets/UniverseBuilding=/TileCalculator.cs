@@ -3,30 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TileCalculator : MonoBehaviour
-{
-    int players;
-    int size;
-    int totalTiles;
-    
+{    
+    public Vector3 totalTiles;  //Stores all values needed for universe building
     void Start()
-    {     
-        players = Random.Range(2, 8);
-        size = Random.Range(1, 3);
-        totalTiles = calculateTotalTiles(players, size);
-        Debug.Log("Players: " + players + " Size: " + size + " Tiles: " + totalTiles);
-    }
-    void Update()
     {
-        
+        int players = Random.Range(2, 8);
+        int size = Random.Range(1, 3);
+        totalTiles = calculateTotalTiles(players, size);
+        Debug.Log("Player count:" + players + " size:" + size);
+        Debug.Log("x:" + totalTiles.x + " y:" + totalTiles.y + " total:" + totalTiles.z);
     }
 
-    int calculateTotalTiles(int playerCount, int size)
+    private Vector3 calculateTotalTiles(int playerCount, int size)
     {
-        int x;
-        int y;
-        x = players;
-        y = players + (size - 1);
-        int total = x * y;
-        return total;
+        //x and y are width and height
+        int xSize = playerCount;
+        int ySize = playerCount + (size - 1);
+        int total = xSize * ySize;
+        Vector3 dimensions = new Vector3(xSize, ySize, total);
+        return dimensions;
     }
 }
