@@ -26,14 +26,8 @@ public class MapCreatorAI : MonoBehaviour
                 universe[i, j] = 0;
             }
         }
-        PlayerPlaceTile(1);
         //-----------------------------------------------------------------------------
 
-    }
-
-    void PlayerPlaceTile(int playerNumber)
-    {
-        universe[1,1] = 1;
     }
 
     void Update()
