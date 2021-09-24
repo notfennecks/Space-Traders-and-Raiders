@@ -10,8 +10,8 @@ public class TileCalculator : MonoBehaviour
         int players = Random.Range(2, 8);
         int size = Random.Range(1, 3);
         totalTiles = calculateTotalTiles(players, size);
-        Debug.Log("Player count:" + players + " size:" + size);
-        Debug.Log("x:" + totalTiles.x + " y:" + totalTiles.y + " total:" + totalTiles.z);
+        //Debug.Log("Player count:" + players + " size:" + size);
+        //Debug.Log("x:" + totalTiles.x + " y:" + totalTiles.y + " total:" + totalTiles.z);
     }
 
     private Vector3 calculateTotalTiles(int playerCount, int size)
