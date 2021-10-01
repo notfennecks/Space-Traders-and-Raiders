@@ -31,6 +31,7 @@ public class MapCreatorAI : MonoBehaviour
         //Tile placement phase
         //Player can either place down a system card or space card
         //Player order is random
+        PlaceTile(PromptPlaceTile(1, 2, 1), new Vector2(1,1));
 
     }
 
