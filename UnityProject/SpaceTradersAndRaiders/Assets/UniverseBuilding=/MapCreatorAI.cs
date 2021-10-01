@@ -28,9 +28,25 @@ public class MapCreatorAI : MonoBehaviour
         }
         //-----------------------------------------------------------------------------
 
+        //Tile placement phase
+        //Player can either place down a system card or space card
+        //Player order is random
+
     }
 
-    void Update()
+    string PromptPlaceTile(int player_num, int amount_spaceCard, int amount_systemCard)
+    {
+        //Two options for placing tile.
+        //1
+        //Player chooses card type first then location
+        //2
+        //Player chooses location first then card type
+
+        string tileType = "";
+        return tileType;
+    }
+
+    void PlaceTile(string cardType, Vector2 location)
     {
         
     }
