@@ -8,25 +8,33 @@ public class ShipDisplay : MonoBehaviour
     public Ship ship;
 
     public Text nameText;
+    public Text descText;
 
     public Image artworkImage;
 
-    public Text maxText;
-    public Text healthText;
-    public Text gunsText;
+    public Text maxhitText;
+    public Text hitText;
     public Text engineText;
+    public Text beamText;
+    public Text missileText;
+    public Text shieldText;
+    public Text antimissileText;
+
 
     void Start()
     {
         //ship.Print(); //Send info to console test
         nameText.text = ship.name;
+        descText.text = ship.description;
         artworkImage.sprite = ship.artwork;
 
-        maxText.text = "/" + ship.max_health.ToString();
-        healthText.text =  ship.health.ToString();
-        gunsText.text = ship.gun_num.ToString() + " guns";
+        maxhitText.text = "/" + ship.max_hits.ToString();
+        hitText.text = ship.crit_hits.ToString();
         engineText.text = ship.engine_num.ToString() + " engines";
-
+        beamText.text = ship.beam_num.ToString() + " beams";
+        missileText.text = ship.missile_num.ToString() + " missiles";
+        shieldText.text = ship.shield_num.ToString() + " shields";
+        antimissileText.text = ship.anti_missile_num.ToString() + " anti-missiles";
     }
-
+     
 }

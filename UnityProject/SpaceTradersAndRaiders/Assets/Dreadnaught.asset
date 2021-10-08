@@ -10,12 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3eb203512f1b3af4dbfda96fe505b7da, type: 3}
-  m_Name: Behemoth
+  m_Name: Dreadnaught
   m_EditorClassIdentifier: 
-  name: Behemoth
-  description: the biggest and baddest
-  engine_num: 32
-  gun_num: 2
-  max_health: 5000
-  health: 7000
-  artwork: {fileID: 21300000, guid: 05f1f5c60d9cf6f46a604c86434aa00b, type: 3}
+  name: Dreadnaught
+  description: Biggest, 25 spaces
+  max_hits: 18
+  crit_hits: 0
+  engine_num: 0
+  beam_num: 0
+  missile_num: 0
+  shield_num: 0
+  anti_missile_num: 0
+  component_num: 0
+  max_components: 25
+  artwork: {fileID: 0}

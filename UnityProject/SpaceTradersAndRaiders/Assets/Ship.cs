@@ -8,10 +8,17 @@ public class Ship : ScriptableObject
     public new string name;
     public string description;
 
+    public int max_hits;
+    public int crit_hits;
     public int engine_num;
-    public int gun_num;
-    public int max_health;
-    public int health;
+    public int beam_num;
+    public int missile_num;
+    public int shield_num;
+    public int anti_missile_num;
+
+    public int component_num;
+    public int max_components;
+
 
     public Sprite artwork;
 
