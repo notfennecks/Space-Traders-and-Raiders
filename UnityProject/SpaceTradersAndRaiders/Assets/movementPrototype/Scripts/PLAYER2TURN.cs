@@ -19,16 +19,27 @@ public class PLAYER2TURN : State
 
     IEnumerator _Player2Turn()
     {
-        yield return new WaitForSeconds(1f);
-        if (_system.playerMoved)
+       
+       /* if (_system.playerMoved)
         {
             Debug.Log("Player2 Moved");
             _system.playerMoved = false;
             _system.SetState(new PLAYER1TURN(_system));
             yield return new WaitForSeconds(1f);
 
-        }
+        }*/
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit.collider != null)
+            {
+                Debug.Log(hit.collider.name);
 
+                
+            }
+            
+        }
+        yield return new WaitForSeconds(1f);
         //if they initiate combat, gamestate changed to combat
     }
 

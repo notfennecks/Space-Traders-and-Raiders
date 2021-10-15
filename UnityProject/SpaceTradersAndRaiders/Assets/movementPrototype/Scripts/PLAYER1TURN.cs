@@ -19,19 +19,22 @@ using UnityEngine;
     }
     IEnumerator _Player1Turn()
     {
+
+        /* if (_system.playerMoved) //not working for some reason
+         {
+             Debug.Log("Player1 Moved");
+             _system.playerMoved = false;
+             _system.SetState(new PLAYER2TURN(_system));
+             yield return new WaitForSeconds(1f);
+
+         }*/
+         
         
         yield return new WaitForSeconds(1f);
-        if (_system.playerMoved) //not working for some reason
-        {
-            Debug.Log("Player1 Moved");
-            _system.playerMoved = false;
-            _system.SetState(new PLAYER2TURN(_system));
-            yield return new WaitForSeconds(1f);
-            
-        }
-        
+
         //if they initiate combat, gamestate changed to combat
     }
+
 
     
 }

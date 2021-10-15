@@ -1,5 +1,5 @@
 using System.Collections;
-
+using UnityEngine;
 
 public abstract class State 
 {
@@ -27,5 +27,9 @@ public abstract class State
         yield break;
     }
 
+    public virtual IEnumerator Combat(GameObject attacker, GameObject defender)
+    {
+        yield break;
+    }
 }
 
