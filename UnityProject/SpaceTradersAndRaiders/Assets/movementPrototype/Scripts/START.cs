@@ -30,17 +30,19 @@ public class START : State
     {
         GameObject firstTile = GameObject.Find("Tile00");
         Vector3 startPos = new Vector3(firstTile.transform.position.x, firstTile.transform.position.y);
-        _system.player1 = Object.Instantiate((GameObject)_system.playerPrefab, startPos, Quaternion.identity);
-        _system.player1.name = ("Player1");
+        _system.player1Ship = Object.Instantiate((GameObject)_system.playerPrefab, startPos, Quaternion.identity);
+        _system.player1Ship.name = ("Player1Ship");
+        _system.player1Ship.transform.parent = _system.Player1Obj.transform;
 
     }
     public void CreatePlayer2()
     {
         GameObject lastTile = GameObject.Find("Tile1914");
         Vector3 startPos = new Vector3(lastTile.transform.position.x, lastTile.transform.position.y);
-        _system.player2 = Object.Instantiate((GameObject)_system.playerPrefab, startPos, Quaternion.identity);
-        _system.player2.name = ("Player2");
-        _system.player2.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        _system.player2Ship = Object.Instantiate((GameObject)_system.playerPrefab, startPos, Quaternion.identity);
+        _system.player2Ship.name = ("Player2Ship");
+        _system.player2Ship.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        _system.player2Ship.transform.parent = _system.Player2Obj.transform;
     }
 
 }

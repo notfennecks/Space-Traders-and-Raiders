@@ -6,7 +6,7 @@ using UnityEngine;
 public class gameManager : MonoBehaviour
 {
    // public GameState state;
-    public GameObject playerPrefab, player1, player2, attacker, defender;
+    public GameObject playerPrefab, player1Ship, player2Ship, attacker, defender, Player1Obj, Player2Obj;
     [SerializeField] public GameObject[] Player;
     public movementScript moveScript;
     public bool playerMoved = false;
@@ -38,14 +38,14 @@ public class gameManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-                if (hit.collider.tag == "Player" && hit.collider.name != "Player1")
+                if (hit.collider.tag == "Player" && hit.collider.name != "Player1Ship")
                 {
-                    float distY = Mathf.Abs((player1.transform.position.y - hit.collider.gameObject.transform.position.y));
-                    float distX = Mathf.Abs((player1.transform.position.x - hit.collider.gameObject.transform.position.x));
+                    float distY = Mathf.Abs((player1Ship.transform.position.y - hit.collider.gameObject.transform.position.y));
+                    float distX = Mathf.Abs((player1Ship.transform.position.x - hit.collider.gameObject.transform.position.x));
                     if (distY <= 1 && distX <= 1)
                     {
                         Debug.Log(hit.collider.name);
-                        attacker = player1;
+                        attacker = player1Ship;
                         defender = hit.collider.gameObject;
                         SetState(new COMBAT(system: this));
                     }
@@ -65,19 +65,28 @@ public class gameManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-                if (hit.collider.tag == "Player" && hit.collider.name != "Player2")
+                if (hit.collider.tag == "Player" && hit.collider.name != "Player2Ship")
                 {
-                    float distY = Mathf.Abs((player1.transform.position.y - hit.collider.gameObject.transform.position.y));
-                    float distX = Mathf.Abs((player1.transform.position.x - hit.collider.gameObject.transform.position.x));
+                    float distY = Mathf.Abs((player2Ship.transform.position.y - hit.collider.gameObject.transform.position.y));
+                    float distX = Mathf.Abs((player2Ship.transform.position.x - hit.collider.gameObject.transform.position.x));
                     if (distY <= 1 && distX <= 1)
                     {
                         Debug.Log(hit.collider.name);
-                        attacker = player2;
+                        attacker = player2Ship;
                         defender = hit.collider.gameObject;
                         SetState(new COMBAT(system: this));
                     }
                 }
             }
+        }
+
+        if (Player1Obj = null)
+        {
+            Debug.Log("All Player1 ships destroyed, Player 2 wins!");
+        }
+        if (Player2Obj = null)
+        {
+            Debug.Log("All Player2 ships destroyed, Player 1 wins!");
         }
     }
     

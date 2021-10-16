@@ -24,8 +24,8 @@ public class tileScript : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
         gameManager = GameObject.Find("gameManager").GetComponent<gameManager>();
-        playerShip1 = GameObject.Find("Player1");
-        playerShip2 = GameObject.Find("Player2");
+        playerShip1 = GameObject.Find("Player1Ship");
+        playerShip2 = GameObject.Find("Player2Ship");
     }
     public void OnMouseDown()
     {
