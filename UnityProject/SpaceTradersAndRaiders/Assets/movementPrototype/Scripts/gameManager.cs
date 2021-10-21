@@ -22,7 +22,7 @@ public class gameManager : MonoBehaviour
     {
         moveScript = GameObject.Find("movementScript").GetComponent<movementScript>();
         SetState(new START(system:this));
-
+    
     }
     private void Update()
     {

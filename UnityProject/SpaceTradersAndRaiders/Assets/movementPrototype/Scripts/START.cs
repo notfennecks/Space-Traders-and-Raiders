@@ -33,6 +33,7 @@ public class START : State
         _system.player1Ship = Object.Instantiate((GameObject)_system.playerPrefab, startPos, Quaternion.identity);
         _system.player1Ship.name = ("Player1Ship");
         _system.player1Ship.transform.parent = _system.Player1Obj.transform;
+        
 
     }
     public void CreatePlayer2()
