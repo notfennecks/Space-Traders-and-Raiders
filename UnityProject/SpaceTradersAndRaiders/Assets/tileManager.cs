@@ -4,47 +4,61 @@ using UnityEngine;
 
 public class tileManager : MonoBehaviour
 {
+    [HideInInspector]
     public GameManager gameManager;
     public SpriteRenderer highlight;
+    private GameObject playerShip1, playerShip2;
 
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerShip1 = GameObject.Find("Player1Frigate1");
+        playerShip2 = GameObject.Find("Player2Frigate1");
     }
     void OnMouseEnter()
     {
-        if(gameManager.BasesSelected == false)
+        if(gameManager.state == "BASE_SELECTION")
         {
-            highlight.enabled = true;
+            if(gameManager.BasesSelected == false && gameManager.Player1HomeTile != this.name)
+            {
+                highlight.enabled = true;
+                Debug.Log(this.name);
+            }
         }
     }
     void OnMouseExit()
     {
-        if(gameManager.BasesSelected == false)
+        if(gameManager.state == "BASE_SELECTION")
         {
-            highlight.enabled = false;
+            if(gameManager.BasesSelected == false)
+            {
+                highlight.enabled = false;
+            }
         }
     }
     void OnMouseDown()
     {
-        if(gameManager.BaseSelectionTurn == 1)
+        if(gameManager.state == "BASE_SELECTION")
         {
-            gameManager.Player1HomeBase = this.name;
-            gameManager.BaseSelectionTurn = 2;
-        }
-        else if(gameManager.BaseSelectionTurn == 2)
-        {
-            if(this.name == gameManager.Player1HomeBase)
+            if(gameManager.BaseSelectionTurn == 1)
             {
-                return;
+                gameManager.Player1HomeTile = this.name;
+                gameManager.BaseSelectionTurn = 2;
+
+                gameManager.Player1HomePlanet = this.transform.GetChild(1).name;
             }
-            gameManager.Player2HomeBase = this.name;
-            gameManager.BasesSelected = true;
-            highlight.enabled = false;
+            else if(gameManager.BaseSelectionTurn == 2)
+            {
+                if(this.name == gameManager.Player1HomeTile)
+                {
+                    return;
+                }
+                gameManager.Player2HomeTile = this.name;
+                gameManager.BasesSelected = true;
+                highlight.enabled = false;
+                gameManager.Player2HomePlanet = this.transform.GetChild(1).name;
+                gameManager.AssignStartingFacilities();
+            }
         }
-    }
-    void Update()
-    {
-        
     }
 }
