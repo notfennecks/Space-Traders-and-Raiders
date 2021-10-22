@@ -522,21 +522,19 @@ public class COMBAT : State
     {
 
         choice = 0;
-        if (defenderData.armor <= 0)
+        if (defenderData.armor > 0)
         {
             defenderData.armor -= attackerSuccessfulRolls;
         }
         else
         {
-            Debug.Log("Attacker, target Laser Beams(1), empty component for Critical Hit(2), or Engines(3)?");
+            Debug.Log("Attacker, target empty component for Critical Hit(1), Laser Beams(2), or Engines(3)?");
             yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 }));
             _system.StopCoroutine("WaitForKeyDown");
             switch (choice)
             {
+                
                 case 1:
-                    defenderData.laserBeams.Remove(attackerSuccessfulRolls);
-                    break;
-                case 2:
                     defenderData.criticalHitsTaken++;
                     if (defenderData.criticalHitsTaken >= defenderData.maxCriticalHits)
                     {
@@ -558,6 +556,9 @@ public class COMBAT : State
                         
                     }
                     break;
+                case 2:
+                    defenderData.laserBeams.Remove(attackerSuccessfulRolls);
+                    break;
                 case 3:
                     defenderData.Engines.Remove(attackerSuccessfulRolls);
                     break;
@@ -573,21 +574,18 @@ public class COMBAT : State
     {
 
         choice = 0;
-        if (attackerData.armor <= 0)
+        if (attackerData.armor > 0)
         {
             attackerData.armor -= defenderSuccessfulRolls;
         }
         else
         {
-            Debug.Log("Defender, target Laser Beams(1), empty component for Critical Hit(2), or Engines(3)?");
+            Debug.Log("Defender, target empty component for Critical Hit(1), Laser Beams(2), or Engines(3)?");
             yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 }));
             _system.StopCoroutine("WaitForKeyDown");
             switch (choice)
             {
                 case 1:
-                    attackerData.laserBeams.Remove(defenderSuccessfulRolls);
-                    break;
-                case 2:
                     attackerData.criticalHitsTaken++;
                     if (attackerData.criticalHitsTaken >= attackerData.maxCriticalHits)
                     {
@@ -609,6 +607,9 @@ public class COMBAT : State
                         
                     }
                     break;
+                case 2:
+                    attackerData.laserBeams.Remove(defenderSuccessfulRolls);
+            break;
                 case 3:
                     attackerData.Engines.Remove(defenderSuccessfulRolls);
                     break;
