@@ -8,6 +8,7 @@ public class gameManager : MonoBehaviour
    // public GameState state;
     public GameObject playerPrefab, player1Ship, player2Ship, attacker, defender, Player1Obj, Player2Obj;
     [SerializeField] public GameObject[] Player;
+    [SerializeField] Sprite[] shipSprites;
     public movementScript moveScript;
     public bool playerMoved = false;
     public bool clickedOnPlayer = false;
@@ -22,7 +23,8 @@ public class gameManager : MonoBehaviour
     {
         moveScript = GameObject.Find("movementScript").GetComponent<movementScript>();
         SetState(new START(system:this));
-    
+        
+
     }
     private void Update()
     {
@@ -79,6 +81,7 @@ public class gameManager : MonoBehaviour
                 }
             }
         }
+        
 
         if (Player1Obj = null)
         {

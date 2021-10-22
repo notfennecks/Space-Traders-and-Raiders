@@ -1,0 +1,876 @@
+fileFormatVersion: 2
+guid: 10fd240a1217fa84fb758dd793db98a1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 503389869567936411
+    second: 5SHIPPY_0
+  - first:
+      213: 5825388231831153588
+    second: 5SHIPPY_1
+  - first:
+      213: -21951240397728011
+    second: 5SHIPPY_2
+  - first:
+      213: 3617345715403676931
+    second: 5SHIPPY_3
+  - first:
+      213: 1175391129715025800
+    second: 5SHIPPY_4
+  - first:
+      213: -4090216500191590061
+    second: 5SHIPPY_5
+  - first:
+      213: 6317689228133947542
+    second: 5SHIPPY_6
+  - first:
+      213: -3088828069480114033
+    second: 5SHIPPY_7
+  - first:
+      213: 8760602413188197737
+    second: 5SHIPPY_8
+  - first:
+      213: 360934572244308510
+    second: 5SHIPPY_9
+  - first:
+      213: 7568177059875248119
+    second: 5SHIPPY_10
+  - first:
+      213: -1080293853102591496
+    second: 5SHIPPY_11
+  - first:
+      213: -8603454544040338484
+    second: 5SHIPPY_12
+  - first:
+      213: 4287554118637389194
+    second: 5SHIPPY_13
+  - first:
+      213: -9058463775538231745
+    second: 5SHIPPY_14
+  - first:
+      213: 3939685565479322911
+    second: 5SHIPPY_15
+  - first:
+      213: -1049779375017301183
+    second: 5SHIPPY_16
+  - first:
+      213: -4015731160631633483
+    second: 5SHIPPY_17
+  - first:
+      213: -1495907066554723886
+    second: 5SHIPPY_18
+  - first:
+      213: -4956388837953566328
+    second: 5SHIPPY_19
+  - first:
+      213: 5092601201492086755
+    second: 5SHIPPY_20
+  - first:
+      213: 3818526279579211080
+    second: 5SHIPPY_21
+  - first:
+      213: 3155781743171127526
+    second: 5SHIPPY_22
+  - first:
+      213: 3213044818887549892
+    second: 5SHIPPY_23
+  - first:
+      213: 76876041900696380
+    second: 5SHIPPY_24
+  - first:
+      213: 2514072930206422363
+    second: 5SHIPPY_25
+  - first:
+      213: 5131085636648457601
+    second: 5SHIPPY_26
+  - first:
+      213: 3430137569370187986
+    second: 5SHIPPY_27
+  - first:
+      213: 6825722785813919656
+    second: 5SHIPPY_28
+  - first:
+      213: 2631165158368960628
+    second: 5SHIPPY_29
+  - first:
+      213: 7208085799020597245
+    second: 5SHIPPY_30
+  - first:
+      213: 3823166973335979838
+    second: 5SHIPPY_31
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 5SHIPPY_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4498
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9780275b666cf600800000000000000
+      internalID: 503389869567936411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_1
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 4498
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb690d8bbfe7d050800000000000000
+      internalID: 5825388231831153588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_2
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 4498
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6d6b1967302bff0800000000000000
+      internalID: -21951240397728011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_3
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 4498
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30dda6c33c4633230800000000000000
+      internalID: 3617345715403676931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3876
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8872fc64104df4010800000000000000
+      internalID: 1175391129715025800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_5
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 3876
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35983a393c1ac37c0800000000000000
+      internalID: -4090216500191590061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_6
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 3876
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6985c3461e0fca750800000000000000
+      internalID: 6317689228133947542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_7
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 3876
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f88d1627c374225d0800000000000000
+      internalID: -3088828069480114033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3254
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96d2388aa79e39970800000000000000
+      internalID: 8760602413188197737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_9
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 3254
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1297c5c41c420500800000000000000
+      internalID: 360934572244308510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_10
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 3254
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f7df1320f0970960800000000000000
+      internalID: 7568177059875248119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_11
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 3254
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f138c8d6760201f0800000000000000
+      internalID: -1080293853102591496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2632
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccb514ddca36a9880800000000000000
+      internalID: -8603454544040338484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_13
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 2632
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8505a421c3708b30800000000000000
+      internalID: 4287554118637389194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_14
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 2632
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f36cc40a03fd94280800000000000000
+      internalID: -9058463775538231745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_15
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 2632
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f15012106239ca630800000000000000
+      internalID: 3939685565479322911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2010
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14bef8b683f6e61f0800000000000000
+      internalID: -1049779375017301183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_17
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 2010
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b9951129c14548c0800000000000000
+      internalID: -4015731160631633483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_18
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 2010
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d15209d2787d3be0800000000000000
+      internalID: -1495907066554723886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_19
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 2010
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8890119ac9e573bb0800000000000000
+      internalID: -4956388837953566328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1388
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3efc9ad9fcd8ca640800000000000000
+      internalID: 5092601201492086755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_21
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 1388
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84510db7b612ef430800000000000000
+      internalID: 3818526279579211080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_22
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 1388
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e8c06e76c69bcb20800000000000000
+      internalID: 3155781743171127526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_23
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 1388
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c3a3354d37079c20800000000000000
+      internalID: 3213044818887549892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 766
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c33aa315a5e111100800000000000000
+      internalID: 76876041900696380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_25
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 766
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5511688208c3e220800000000000000
+      internalID: 2514072930206422363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_26
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 766
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1855a8c6337453740800000000000000
+      internalID: 5131085636648457601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_27
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 766
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d8280912fb4a9f20800000000000000
+      internalID: 3430137569370187986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a77abf95b6d9be50800000000000000
+      internalID: 6825722785813919656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_29
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 144
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47067f165c6c38420800000000000000
+      internalID: 2631165158368960628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_30
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 144
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dff092918d3480460800000000000000
+      internalID: 7208085799020597245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5SHIPPY_31
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 144
+        width: 638
+        height: 622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3742b23b1e9e0530800000000000000
+      internalID: 3823166973335979838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

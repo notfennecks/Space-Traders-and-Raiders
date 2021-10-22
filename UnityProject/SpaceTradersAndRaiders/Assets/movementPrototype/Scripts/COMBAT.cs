@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class COMBAT : State
 {
-    private int choice = -1;
+    private int choice = 0;
     public GameObject attacker, defender;
     public shipDataScript attackerData, defenderData;
     public int attackerSuccessfulRolls = 0;
@@ -34,15 +34,21 @@ public class COMBAT : State
 
     IEnumerator attackerTurn()
     {
+
+        choice = 0;
         attackerWantsToFlee = false;
         attackersTurn = true;
         Debug.Log("Attacker, Attack(1) or Attempt to Flee(2)?");
         yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
+        
         switch (choice)
         {
+
             case 1:
+                choice = 0;
                 if (attackerData.laserBeams.Count <= 0)
                 {
+
                     Debug.Log("You cannot fight because you do not have any weapons, changing decision to flee...");
                     attackerWantsToFlee = true;
                     break;
@@ -50,6 +56,7 @@ public class COMBAT : State
                 else { attackerWantsToFlee = false; }
                 break;
             case 2:
+                choice = 0;
                 if (attackerData.Engines.Count <= 0)
                 {
                     Debug.Log("You cannot flee because you have no engines remaining. Fight(1) or Surrender(2)(surrender not available in prototype)");
@@ -60,14 +67,19 @@ public class COMBAT : State
                 break;
 
         }
+        choice = 0;
+        _system.StopCoroutine("WaitForKeyDown");
         _system.StartCoroutine(defenderTurn());
     }
     IEnumerator defenderTurn()
     {
+
+        choice = 0;
         defenderWantsToFlee = false;
         attackersTurn = false;
         Debug.Log("Defender, Attack(1) or Attempt to Flee(2)?");
         yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
+        _system.StopCoroutine("WaitForKeyDown");
         switch (choice)
         {
             case 1:
@@ -95,6 +107,8 @@ public class COMBAT : State
 
     private void determineDecisions()
     {
+
+        choice = 0;
         if (attackerWantsToFlee && defenderWantsToFlee) // both want to flee
         {
             Debug.Log("Both players wish to flee, fleeing...");
@@ -111,6 +125,7 @@ public class COMBAT : State
             {
                 Debug.Log("Attacker, you do not have any weapons, attempt to flee(1) or surrender(2)? (No surrender in prototype, destroys instead)");
                 _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
+                _system.StopCoroutine("WaitForKeyDown");
                 switch (choice)
                 {
                     case 1:
@@ -156,11 +171,14 @@ public class COMBAT : State
 
 
                 }
+
+                choice = 0;
             }
             else if (attackerData.laserBeams.Count > 0 && defenderData.laserBeams.Count <= 0) //defender doesn't have weapons
             {
-                Debug.Log("Defenderr, you do not have any weapons, attempt to flee(1) or surrender(2)? (No surrender in prototype, destroys instead)");
+                Debug.Log("Defender, you do not have any weapons, attempt to flee(1) or surrender(2)? (No surrender in prototype, destroys instead)");
                 _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
+                _system.StopCoroutine("WaitForKeyDown");
                 switch (choice)
                 {
                     case 1:
@@ -206,6 +224,8 @@ public class COMBAT : State
 
 
                 }
+
+                choice = 0;
             }
 
             else { _system.StartCoroutine(fight()); } //both have weapons, fight
@@ -217,6 +237,7 @@ public class COMBAT : State
             {
                 Debug.Log("Attacker, you do not have any Engines, try to fight back(1) or surrender(2)? (No surrender in prototype, destroys instead)");
                 _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
+                _system.StopCoroutine("WaitForKeyDown");
                 switch (choice)
                 {
                     case 1:
@@ -258,6 +279,8 @@ public class COMBAT : State
 
 
                 }
+
+                choice = 0;
             }
             if (defenderData.laserBeams.Count <= 0) //defender wants to fight but doesn't have any weapons
             {
@@ -279,6 +302,7 @@ public class COMBAT : State
             {
                 Debug.Log("Defender, you do not have any Engines, try to fight back(1) or surrender(2)? (No surrender in prototype, destroys instead)");
                 _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
+                _system.StopCoroutine("WaitForKeyDown");
                 switch (choice)
                 {
                     case 1:
@@ -320,6 +344,8 @@ public class COMBAT : State
 
 
                 }
+
+                choice = 0;
             }
             if (attackerData.laserBeams.Count <= 0) //attacker wants to fight but doesn't have any weapons
             {
@@ -337,6 +363,8 @@ public class COMBAT : State
     }
     IEnumerator fight()
     {
+
+        choice = 0;
         Debug.Log("In Combat");
         fireLaserBeams();    //roll die for lasers and subtract health and armor
         _system.StartCoroutine(dealDamageToDefender());
@@ -356,6 +384,7 @@ public class COMBAT : State
     public void attemptFlee()
     {
 
+        choice = 0;
         Debug.Log("Attempting to flee");
         int chasingPlayersEngines;
         int fleeingPlayersEngines;
@@ -394,6 +423,8 @@ public class COMBAT : State
     }
    public void flee()
     {
+
+        choice = 0;
         Debug.Log("Fleeing");
         _system.StopCoroutine(attackerTurn());
         _system.StopCoroutine(defenderTurn());
@@ -420,10 +451,11 @@ public class COMBAT : State
                 break;
         }
         
-        // should be defenders turn
+       
     }
     IEnumerator WaitForKeyDown(KeyCode[] codes)
     {
+       
         bool pressed = false;
         while (!pressed)
         {
@@ -435,8 +467,11 @@ public class COMBAT : State
                     SetChoiceTo(k);
                     break;
                 }
+                pressed = false;
+                choice = 0;
             }
-           yield return new WaitForEndOfFrame();
+           
+            yield return new WaitForSeconds(0f);
         }
     }
 
@@ -485,6 +520,8 @@ public class COMBAT : State
     }
     IEnumerator dealDamageToDefender()
     {
+
+        choice = 0;
         if (defenderData.armor <= 0)
         {
             defenderData.armor -= attackerSuccessfulRolls;
@@ -493,6 +530,7 @@ public class COMBAT : State
         {
             Debug.Log("Attacker, target Laser Beams(1), empty component for Critical Hit(2), or Engines(3)?");
             yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 }));
+            _system.StopCoroutine("WaitForKeyDown");
             switch (choice)
             {
                 case 1:
@@ -525,12 +563,16 @@ public class COMBAT : State
                     break;
 
             }
+
+            choice = 0;
         }
         attackerSuccessfulRolls = 0;
         yield return new WaitForSeconds(1f);
     }
     IEnumerator dealDamageToAttacker()
     {
+
+        choice = 0;
         if (attackerData.armor <= 0)
         {
             attackerData.armor -= defenderSuccessfulRolls;
@@ -539,6 +581,7 @@ public class COMBAT : State
         {
             Debug.Log("Defender, target Laser Beams(1), empty component for Critical Hit(2), or Engines(3)?");
             yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 }));
+            _system.StopCoroutine("WaitForKeyDown");
             switch (choice)
             {
                 case 1:
@@ -571,6 +614,8 @@ public class COMBAT : State
                     break;
 
             }
+
+            choice = 0;
         }
         defenderSuccessfulRolls = 0;
         yield return new WaitForSeconds(1f);

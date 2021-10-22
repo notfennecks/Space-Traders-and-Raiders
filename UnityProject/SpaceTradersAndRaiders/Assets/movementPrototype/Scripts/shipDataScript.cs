@@ -10,6 +10,7 @@ public class shipDataScript : MonoBehaviour
     [SerializeField] public int maxCriticalHits = 2;
     [SerializeField] public int criticalHitsTaken = 0;
     [SerializeField] public bool isChasingPLayer = false;
+    [SerializeField] public Sprite sprite;
 
     private void Start()
     {
