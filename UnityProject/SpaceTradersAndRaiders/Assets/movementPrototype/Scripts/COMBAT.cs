@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class COMBAT : State
 {
     private int choice = 0;
-    public GameObject attacker, defender;
+    public GameObject attacker, defender, attackButton, fleeButton, combatManager;
     public shipDataScript attackerData, defenderData;
     public int attackerSuccessfulRolls = 0;
     public int defenderSuccessfulRolls = 0;
@@ -14,17 +15,26 @@ public class COMBAT : State
     public bool defenderWantsToFlee = false;
     public COMBAT(gameManager system) : base(system)
     {
+        SceneManager.LoadScene("Combat");
         Debug.Log("Welcome to Combat");
         attacker = _system.attacker;
         attackerData = attacker.GetComponent<shipDataScript>();
 
         defender = _system.defender;
         defenderData = defender.GetComponent<shipDataScript>();
+        combatManager = GameObject.Find("CombatManager");
+        choice = combatManager.GetComponent<combatButtons>().choice;
+        attackButton = GameObject.Find("attackBtn");
+        fleeButton = GameObject.Find("fleeBtn");
+        DeactivateButtons();
+
         _system.StartCoroutine(Combat(_system.attacker, _system.defender));
+
     }
 
     public override IEnumerator Combat(GameObject attacker, GameObject defender)
     {
+        
         attacker = _system.attacker;
         defender = _system.defender;
         Debug.Log("Attacker" + _system.attacker.gameObject.name + " Defender " + _system.defender.gameObject.name);
@@ -34,11 +44,11 @@ public class COMBAT : State
 
     IEnumerator attackerTurn()
     {
-
-        choice = 0;
+        ActivateButtons();
+        resetButton();
         attackerWantsToFlee = false;
         attackersTurn = true;
-        Debug.Log("Attacker, Attack(1) or Attempt to Flee(2)?");
+        Debug.Log("Attacker, Attack or Attempt to Flee?");
         yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
         
         switch (choice)
@@ -622,6 +632,20 @@ public class COMBAT : State
         yield return new WaitForSeconds(1f);
     }
 
+    public void ActivateButtons()
+    {
+        attackButton.SetActive(true);
+        fleeButton.SetActive(true); ;
+    }
+    public void DeactivateButtons()
+    {
+        attackButton.SetActive(false);
+        fleeButton.SetActive(false);
+    }
+    public void resetButton()
+    {
+        choice = 0;
+    }
     private int rollDie()
     {
         int randomNum = Random.Range(1, 7);
