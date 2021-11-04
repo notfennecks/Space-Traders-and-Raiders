@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class COMBAT : State
 {
     private int choice = 0;
-    public GameObject attacker, defender, attackButton, fleeButton, combatManager;
+    public bool buttonPressed = false;
+    public GameObject attacker, defender, attackButton, fleeButton;
     public shipDataScript attackerData, defenderData;
     public int attackerSuccessfulRolls = 0;
     public int defenderSuccessfulRolls = 0;
@@ -17,16 +18,15 @@ public class COMBAT : State
     {
         SceneManager.LoadScene("Combat");
         Debug.Log("Welcome to Combat");
-        attacker = _system.attacker;
+       // attacker = _system.attacker;
+        attacker = Object.Instantiate((GameObject)_system.playerPrefab, new Vector3(0, 0), Quaternion.identity);
         attackerData = attacker.GetComponent<shipDataScript>();
 
-        defender = _system.defender;
+
+        // defender = _system.defender;
+        defender = Object.Instantiate((GameObject)_system.playerPrefab, new Vector3(10, 10), Quaternion.identity);
         defenderData = defender.GetComponent<shipDataScript>();
-        combatManager = GameObject.Find("CombatManager");
-        choice = combatManager.GetComponent<combatButtons>().choice;
-        attackButton = GameObject.Find("attackBtn");
-        fleeButton = GameObject.Find("fleeBtn");
-        DeactivateButtons();
+        Debug.Log(choice);
 
         _system.StartCoroutine(Combat(_system.attacker, _system.defender));
 
@@ -38,24 +38,31 @@ public class COMBAT : State
         attacker = _system.attacker;
         defender = _system.defender;
         Debug.Log("Attacker" + _system.attacker.gameObject.name + " Defender " + _system.defender.gameObject.name);
+        //attackButton = GameObject.Find("attackBtn");
+        //fleeButton = GameObject.Find("fleeBtn");
         _system.StartCoroutine(attackerTurn());
         return base.Combat(attacker, defender);
     }
 
     IEnumerator attackerTurn()
     {
-        ActivateButtons();
+        
         resetButton();
         attackerWantsToFlee = false;
         attackersTurn = true;
         Debug.Log("Attacker, Attack or Attempt to Flee?");
-        yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
+        while (!_system.buttonPressed)
+        {
+            yield return null;
+        }
+                
         
-        switch (choice)
+        Debug.Log(_system.choice);
+        switch (_system.choice)
         {
 
             case 1:
-                choice = 0;
+                _system.choice = 0;
                 if (attackerData.laserBeams.Count <= 0)
                 {
 
@@ -66,7 +73,7 @@ public class COMBAT : State
                 else { attackerWantsToFlee = false; }
                 break;
             case 2:
-                choice = 0;
+                _system.choice = 0;
                 if (attackerData.Engines.Count <= 0)
                 {
                     Debug.Log("You cannot flee because you have no engines remaining. Fight(1) or Surrender(2)(surrender not available in prototype)");
@@ -77,14 +84,14 @@ public class COMBAT : State
                 break;
 
         }
-        choice = 0;
-        _system.StopCoroutine("WaitForKeyDown");
+        _system.choice = 0;
+        _system.buttonPressed = false;
         _system.StartCoroutine(defenderTurn());
     }
     IEnumerator defenderTurn()
     {
 
-        choice = 0;
+        _system.choice = 0;
         defenderWantsToFlee = false;
         attackersTurn = false;
         Debug.Log("Defender, Attack(1) or Attempt to Flee(2)?");
@@ -463,6 +470,7 @@ public class COMBAT : State
         
        
     }
+    
     IEnumerator WaitForKeyDown(KeyCode[] codes)
     {
        
@@ -631,17 +639,17 @@ public class COMBAT : State
         defenderSuccessfulRolls = 0;
         yield return new WaitForSeconds(1f);
     }
-
-    public void ActivateButtons()
+   
+    /*public void ActivateButtons()
     {
         attackButton.SetActive(true);
-        fleeButton.SetActive(true); ;
+        fleeButton.SetActive(true); 
     }
     public void DeactivateButtons()
     {
         attackButton.SetActive(false);
         fleeButton.SetActive(false);
-    }
+    }*/
     public void resetButton()
     {
         choice = 0;

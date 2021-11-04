@@ -5,17 +5,22 @@ using UnityEngine;
 public class combatButtons : MonoBehaviour
 {
     [SerializeField] public GameObject attackButton, fleeButton;
+    [SerializeField] public gameManager manager;
+    public int playerChoice;
 
-    public int choice;
-    
+    public void Start()
+    {
+        manager = GameObject.Find("gameManager").GetComponent<gameManager>();
+    }
     public void attackButtonPressed()
     {
-        choice = 1;
+        manager.choice = 1;
         Debug.Log("Choice = 1");
     }
     public void fleeButtonPressed()
     {
-        choice = 2;
+
+        manager.choice = 2;
         Debug.Log("Choice = 2");
     }
    

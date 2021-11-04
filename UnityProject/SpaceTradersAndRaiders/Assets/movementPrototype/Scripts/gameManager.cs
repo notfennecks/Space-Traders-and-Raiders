@@ -6,14 +6,21 @@ using UnityEngine;
 public class gameManager : MonoBehaviour
 {
    // public GameState state;
-    public GameObject playerPrefab, player1Ship, player2Ship, attacker, defender, Player1Obj, Player2Obj;
+    public GameObject playerPrefab, player1Ship, player2Ship, Player1Obj, Player2Obj;
     [SerializeField] public GameObject[] Player;
     [SerializeField] Sprite[] shipSprites;
+    [SerializeField] public GameObject attacker, defender;
     public movementScript moveScript;
     public bool playerMoved = false;
     public bool clickedOnPlayer = false;
     public State currentState;
+    public int choice = 0;
+    public bool buttonPressed = false;
 
+    public void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
     public void SetState(State state)
     {
         currentState = state;
@@ -91,6 +98,14 @@ public class gameManager : MonoBehaviour
         {
             Debug.Log("All Player2 ships destroyed, Player 1 wins!");
         }
+        if (choice != 0)
+        {
+            buttonPressed = true;
+        }
+        else
+        {
+            buttonPressed = false;
+        }
     }
     
     private void  Player1Turn()
@@ -101,7 +116,7 @@ public class gameManager : MonoBehaviour
     {
         SetState(new PLAYER2TURN(system: this));
     }
-    
 
    
+
 }
