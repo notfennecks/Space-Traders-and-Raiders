@@ -5,10 +5,10 @@ using UnityEngine;
 public class START : State
 {
     
-    public START(gameManager system) : base(system)
+    public START(GameManager system) : base(system)
     {
-        CreatePlayer1();
-        CreatePlayer2();
+       // CreatePlayer1();
+        //CreatePlayer2();
         _system.Player = new GameObject[2];
         _system.Player = GameObject.FindGameObjectsWithTag("Player");
         _system.StartCoroutine(Start());
@@ -16,8 +16,8 @@ public class START : State
 
     public override IEnumerator Start()
     {
-        Debug.Log("Creating Universe...");
-        _system.StartCoroutine(_setupUniverse());
+        //Debug.Log("Creating Universe...");
+        //_system.StartCoroutine(_setupUniverse());
         _system.SetState(new PLAYER1TURN(_system));
         return base.Start();
     }

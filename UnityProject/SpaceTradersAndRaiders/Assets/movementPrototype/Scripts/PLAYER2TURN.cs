@@ -5,7 +5,7 @@ using UnityEngine;
 public class PLAYER2TURN : State
 {
 
-    public PLAYER2TURN(gameManager system) : base(system)
+    public PLAYER2TURN(GameManager system) : base(system)
     {
         _system.StartCoroutine(Player2Turn());
     }

@@ -5,12 +5,12 @@ using UnityEngine;
 public class combatButtons : MonoBehaviour
 {
     [SerializeField] public GameObject attackButton, fleeButton;
-    [SerializeField] public gameManager manager;
+    [SerializeField] public GameManager manager;
     public int playerChoice;
 
     public void Start()
     {
-        manager = GameObject.Find("gameManager").GetComponent<gameManager>();
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     public void attackButtonPressed()
     {

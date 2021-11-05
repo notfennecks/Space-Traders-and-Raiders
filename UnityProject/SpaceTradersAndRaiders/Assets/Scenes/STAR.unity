@@ -151,7 +151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438549738
 GameObject:
@@ -186,7 +186,7 @@ MonoBehaviour:
   height: 15
   tilePrefab: {fileID: 2365613898752507694, guid: edd6402981c29024eb185d9c3bc1546a, type: 3}
   cam: {fileID: 1865277222}
-  movementScript: {fileID: 1139839021}
+  movementScript: {fileID: 0}
 --- !u!4 &438549740
 Transform:
   m_ObjectHideFlags: 0
@@ -265,51 +265,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1139839020
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1139839022}
-  - component: {fileID: 1139839021}
-  m_Layer: 0
-  m_Name: movementScript
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1139839021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1139839020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5b75a589bc3a04469b22de8413a6923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManage: {fileID: 2138452482}
---- !u!4 &1139839022
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1139839020}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.189411, y: 5.3812704, z: -4.7921314}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542086879
 GameObject:
@@ -339,7 +295,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1814906253
 GameObject:
@@ -389,7 +345,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865277220
 GameObject:
@@ -506,17 +462,19 @@ MonoBehaviour:
   playerPrefab: {fileID: 507146449698746442, guid: fc9179e7db3907c478d75c14ad3a266d, type: 3}
   player1Ship: {fileID: 0}
   player2Ship: {fileID: 0}
-  attacker: {fileID: 0}
-  defender: {fileID: 0}
   Player1Obj: {fileID: 1542086879}
   Player2Obj: {fileID: 63983339}
   Player: []
   shipSprites:
   - {fileID: -1080293853102591496, guid: 10fd240a1217fa84fb758dd793db98a1, type: 3}
   - {fileID: 7568177059875248119, guid: 10fd240a1217fa84fb758dd793db98a1, type: 3}
-  moveScript: {fileID: 1139839021}
+  attacker: {fileID: 0}
+  defender: {fileID: 0}
+  moveScript: {fileID: 0}
   playerMoved: 0
   clickedOnPlayer: 0
+  choice: 0
+  buttonPressed: 0
 --- !u!4 &2138452483
 Transform:
   m_ObjectHideFlags: 0
@@ -529,5 +487,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

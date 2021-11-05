@@ -5,12 +5,12 @@ using UnityEngine;
 public class movementScript : MonoBehaviour
 {
     
-    public gameManager gameManage;
+    public GameManager gameManage;
 
 
     private void Start()
     {
-        gameManage = GameObject.Find("gameManager").GetComponent<gameManager>();
+        gameManage = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     public void MovePlayer(Vector3 newpos)
     {

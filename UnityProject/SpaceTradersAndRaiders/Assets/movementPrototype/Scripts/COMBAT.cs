@@ -14,7 +14,7 @@ public class COMBAT : State
     public bool attackersTurn = false;
     public bool attackerWantsToFlee = false;
     public bool defenderWantsToFlee = false;
-    public COMBAT(gameManager system) : base(system)
+    public COMBAT(GameManager system) : base(system)
     {
         SceneManager.LoadScene("Combat");
         Debug.Log("Welcome to Combat");

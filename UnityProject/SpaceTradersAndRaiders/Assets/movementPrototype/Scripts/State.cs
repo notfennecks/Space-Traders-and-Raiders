@@ -3,8 +3,8 @@ using UnityEngine;
 
 public abstract class State 
 {
-    public gameManager _system;
-    public State(gameManager system)
+    public GameManager _system;
+    public State(GameManager system)
     {
         _system = system;
 

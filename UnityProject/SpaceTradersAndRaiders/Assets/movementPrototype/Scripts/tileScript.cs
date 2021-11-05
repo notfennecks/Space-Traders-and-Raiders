@@ -9,7 +9,7 @@ public class tileScript : MonoBehaviour
     [SerializeField] private GameObject playerShip1, playerShip2;
     private bool p1inMoveRange = false;
     private bool p2inMoveRange = false;
-    public gameManager gameManager;
+    public GameManager gameManager;
 
     // Start is called before the first frame update
     public void Start()
@@ -23,7 +23,7 @@ public class tileScript : MonoBehaviour
     IEnumerator assignVariables()
     {
         yield return new WaitForSeconds(.5f);
-        gameManager = GameObject.Find("gameManager").GetComponent<gameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerShip1 = GameObject.Find("Player1Ship");
         playerShip2 = GameObject.Find("Player2Ship");
     }
