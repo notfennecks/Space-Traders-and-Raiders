@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [HideInInspector]
     public int BaseSelectionTurn = 1;
+    [HideInInspector]
     public bool BasesSelected = false;
 
     public string state = "BASE_SELECTION";
-    public string Player1HomeTile;
-    public string Player1HomePlanet;
-    public string Player2HomeTile;
-    public string Player2HomePlanet;
-    public int Player1Stells, Player2Stells;
+
+    [HideInInspector]
+    public string Player1HomeTile, Player1HomePlanet, Player2HomeTile, Player2HomePlanet;
+    public int Player1Stells, Player2Stells, Player1OrangeGalacite, Player2OrangeGalacite, Player1PurpleGalacite, Player2PurpleGalacite;
+
+    //Mineral and Currency Aquisition
+    //Minerals----------------------------
+    //Home: 50 orange + 30 purple
+    //Ringed: 30 orange + 20 purple
+    //Terrestrial: 20 orange + 20 purple
+    //Atmospheric: 10 orange + 20 purple
+    //Gas: 10 orange + 0 purple
+    //Stells------------------------------
+    //Home: 12 stells
+    //Ringed: 6 stells
+    //Terrestrial: 9 stells
+    //Atmospheric: 3 stells
+    //Gas: 6 stells
 
     public Sprite Player1Mine, Player2Mine;
     public Sprite Player1SpaceDock, Player2SpaceDock;
