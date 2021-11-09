@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 67177238a7511594c8d56ad72c967334
   - enabled: 1
-    path: Assets/Scenes/Prototype.unity
+    path: Assets/Scenes/Alpha.unity
     guid: f43dc134da313b44fa5cfad20fad9625
   - enabled: 1
     path: Assets/Scenes/STAR.unity

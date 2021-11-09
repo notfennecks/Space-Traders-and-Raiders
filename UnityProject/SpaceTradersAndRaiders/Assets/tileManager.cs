@@ -79,7 +79,7 @@ public class tileManager : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if(gameManager.state == "BASE_SELECTION")
+        if(gameManager.state == "BASE_SELECTION" && this.transform.childCount > 2)
         {
             if(gameManager.BaseSelectionTurn == 1)
             {

@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     public int Player1Stells, Player2Stells, Player1OrangeGalacite, Player2OrangeGalacite, Player1PurpleGalacite, Player2PurpleGalacite;
 
     //Mineral and Currency Aquisition
-    //Minerals----------------------------
+    //Gained at start of every turn (must have mine owned on that planet),
+    //Minerals---------------------------- (per planet)
     //Home: 50 orange + 30 purple
     //Ringed: 30 orange + 20 purple
     //Terrestrial: 20 orange + 20 purple
