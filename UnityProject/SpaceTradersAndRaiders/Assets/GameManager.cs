@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public string Player1HomeTile, Player1HomePlanet, Player2HomeTile, Player2HomePlanet;
-    public int Player1Stells, Player2Stells, Player1OrangeGalacite, Player2OrangeGalacite, Player1PurpleGalacite, Player2PurpleGalacite;
 
     //Mineral and Currency Aquisition
     //Gained at start of every turn (must have mine owned on that planet),
@@ -189,5 +188,18 @@ public class GameManager : MonoBehaviour
     private void Player2Turn()
     {
         SetState(new PLAYER2TURN(system: this));
+    }
+
+    public void TestForWinCondition()
+    {
+        //Test at the end of every turn phase
+
+        //You control more than half of all the planets in the universe
+        //or
+        //You control planets and no other players control any planets
+        //or
+        //You are a trader and you have 50 wealth, 50 power, and 50 achievements
+        //or
+        //You are a raider and you have 60 wealth, 60 power, and 12 achievements
     }
 }
