@@ -7,19 +7,19 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Object_Tester.unity
-    guid: 8f3b5d73b9020db46aa26ee801b6e123
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: 67177238a7511594c8d56ad72c967334
   - enabled: 1
     path: Assets/Scenes/Alpha.unity
     guid: f43dc134da313b44fa5cfad20fad9625
-  - enabled: 1
-    path: Assets/Scenes/STAR.unity
-    guid: 744b1f7e20dc9144f87bdedc7a098580
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Combat.unity
     guid: 811dbe9cf486c0e459aa372b130326a4

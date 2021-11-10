@@ -35,30 +35,38 @@ public class tileManager : MonoBehaviour
             if(gameManager.BasesSelected == false && gameManager.Player1HomeTile != this.name)
             {
                 highlight.enabled = true;
-                Debug.Log(this.name);
             }
         }
-        if (gameManager.state == "MOVE") 
+        if (gameManager.state == "MOVE")
         {
             //for player1
-            float distYP1 = Mathf.Abs((playerShip1.transform.position.y - transform.position.y));
-            float distXP1 = Mathf.Abs((playerShip1.transform.position.x - transform.position.x));
-            if (gameManager.currentState.ToString() == "PLAYER1TURN" && distYP1 <= 5 && distXP1 <= 5)
+            foreach (Transform playerShips in GlobalData.Player1Obj.transform)
             {
-                highlight.enabled = true;
-                p1inMoveRange = true;
+                movementScript player1Ships = playerShips.GetComponent<movementScript>();
+                float distYP1 = Mathf.Abs((playerShips.transform.position.y - transform.position.y));
+                float distXP1 = Mathf.Abs((playerShips.transform.position.x - transform.position.x));
+                if (gameManager.currentState.ToString() == "PLAYER1TURN" && distYP1 <= 5 && distXP1 <= 5 && player1Ships.movesLeft >=1)
+                {
+                    highlight.enabled = true;
+                    //p1inMoveRange = true;
+                    playerShips.GetComponent<movementScript>().inRange = true;
+                }
+                else { playerShips.GetComponent<movementScript>().inRange = false; }
             }
-            else { p1inMoveRange = false; }
-
             //for player2
-            float distYP2 = Mathf.Abs((playerShip2.transform.position.y - transform.position.y));
-            float distXP2 = Mathf.Abs((playerShip2.transform.position.x - transform.position.x));
-            if (gameManager.currentState.ToString() == "PLAYER2TURN" && distYP2 <= 5 && distXP2 <= 5)
+            foreach (Transform playerShips in GlobalData.Player2Obj.transform)
             {
-                highlight.enabled = true;
-                p2inMoveRange = true;
+                movementScript player2Ships = playerShips.GetComponent<movementScript>();
+                float distYP2 = Mathf.Abs((playerShips.transform.position.y - transform.position.y));
+                float distXP2 = Mathf.Abs((playerShips.transform.position.x - transform.position.x));
+                if (gameManager.currentState.ToString() == "PLAYER2TURN" && distYP2 <= 5 && distXP2 <= 5 && player2Ships.movesLeft >=1)
+                {
+                    highlight.enabled = true;
+                    //p2inMoveRange = true;
+                    playerShips.GetComponent<movementScript>().inRange = true;
+                }
+                else { playerShips.GetComponent<movementScript>().inRange = false; }
             }
-            else { p2inMoveRange = false; }
         }
     }
     void OnMouseExit()
@@ -79,6 +87,7 @@ public class tileManager : MonoBehaviour
     }
     void OnMouseDown()
     {
+       
         if(gameManager.state == "BASE_SELECTION" && this.transform.childCount > 2)
         {
             if(gameManager.BaseSelectionTurn == 1)
@@ -103,16 +112,25 @@ public class tileManager : MonoBehaviour
         }
         if (gameManager.state == "MOVE") 
         {
-            if (p1inMoveRange)
+            foreach (Transform player1Ships in GlobalData.Player1Obj.transform)
             {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y);
-                playerShip1.SendMessage("MovePlayer", pos);
-
+                movementScript player1Ship = player1Ships.GetComponent<movementScript>();
+                if (player1Ship.inRange == true && player1Ship.movesLeft >=1)
+                {
+                    Vector3 pos = new Vector3(transform.position.x, transform.position.y);
+                    player1Ships.SendMessage("MovePlayer", pos); // needs to be tested for multiple ships controlled by player1. This might move all of their ships in range at once
+                    player1Ship.movesLeft--;
+                }
             }
-            if (p2inMoveRange)
+            foreach (Transform player2Ships in GlobalData.Player2Obj.transform)
             {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y);
-                playerShip2.SendMessage("MovePlayer", pos);
+                movementScript player2Ship = player2Ships.GetComponent<movementScript>();
+                if (player2Ship.inRange == true && player2Ship.movesLeft >=1)
+                {
+                    Vector3 pos = new Vector3(transform.position.x, transform.position.y);
+                    player2Ships.SendMessage("MovePlayer", pos); // needs to be tested for multiple ships controlled by player2. This might move all of their ships in range at once
+                    player2Ship.movesLeft--;
+                }
             }
         }
     }

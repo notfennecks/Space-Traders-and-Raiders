@@ -6,6 +6,8 @@ public class movementScript : MonoBehaviour
 {
     
     public GameManager gameManage;
+    public bool inRange = false;
+    public int movesLeft = 1;
 
 
     private void Start()

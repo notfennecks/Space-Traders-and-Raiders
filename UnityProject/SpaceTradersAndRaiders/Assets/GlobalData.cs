@@ -9,10 +9,12 @@ public static class GlobalData
     public static int Player1Stells = 0;
     public static int Player1OrangeGalacite = 0;
     public static int Player1PurpleGalacite = 0;
+    public static GameObject Player1Obj = GameObject.Find("Player1Obj");
     //Player 2
     public static int Player2Stells = 0;
     public static int Player2OrangeGalacite = 0;
     public static int Player2PurpleGalacite = 0;
+    public static GameObject Player2Obj = GameObject.Find("Player2Obj");
     //Player 3
     //public static int Player3Stells = 0;
     //public static int Player3OrangeGalacite = 0;

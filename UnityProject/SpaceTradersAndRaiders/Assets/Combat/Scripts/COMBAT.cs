@@ -445,7 +445,7 @@ public class COMBAT : State
         Debug.Log("Fleeing");
         _system.StopCoroutine(attackerTurn());
         _system.StopCoroutine(defenderTurn());
-        string fleeingPlayersName;
+        /*string fleeingPlayersName;
         if (attackerData.isChasingPLayer)
         {
             fleeingPlayersName = defender.name;
@@ -464,6 +464,16 @@ public class COMBAT : State
             case "Player2Ship":
                 attackerData.isChasingPLayer = false;
                 defenderData.isChasingPLayer = false;
+                _system.SetState(new PLAYER2TURN(_system));
+                break;
+        }*/
+
+        switch (_system.attacker.gameObject.name)
+        {
+            case "Player1Ship":
+                _system.SetState(new PLAYER1TURN(_system));
+                break;
+            case "Player2Ship":
                 _system.SetState(new PLAYER2TURN(_system));
                 break;
         }

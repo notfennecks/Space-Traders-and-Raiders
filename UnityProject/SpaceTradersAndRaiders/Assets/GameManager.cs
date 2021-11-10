@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public GameObject Frigate;
     public Sprite Player1Frigate, Player2Frigate;
     public string Player1Role = "Trader", Player2Role = "Trader";
-    public GameObject playerPrefab, player1Ship, player2Ship, Player1Obj, Player2Obj;
+    public GameObject playerPrefab, player1Ship, player2Ship;
     [SerializeField] public GameObject[] Player;
     [SerializeField] Sprite[] shipSprites;
     [SerializeField] public GameObject attacker, defender;
@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
         tileManager = GameObject.Find("tileManager").GetComponent<tileManager>();
         SetState(new START(system: this));
 
-
     }
 
     public void AssignStartingFacilities()
@@ -86,91 +85,28 @@ public class GameManager : MonoBehaviour
         frigate = Instantiate(Frigate, p1Start, Quaternion.identity);
         frigate.name = ("Player1Frigate1");
         frigate.tag = ("Player");
-        //frigate.transform.parent = Player1Obj.transform;
         frigate.GetComponent<SpriteRenderer>().sprite = Player1Frigate;
         frigate.GetComponent<SpriteRenderer>().sortingOrder = 3;
         _ = frigate.AddComponent<movementScript>() as movementScript;
-        tileManager.playerShip1 = GameObject.Find("Player1Frigate1");
-        player1Ship = tileManager.playerShip1;
+        player1Ship = GameObject.Find("Player1Frigate1");
+        player1Ship.transform.parent = GlobalData.Player1Obj.transform;
+
         //Player 2 starting frigate
         Vector3 p2Start = GameObject.Find(Player2HomeTile + "/" + Player2HomePlanet).transform.position;
         frigate = Instantiate(Frigate, p2Start, Quaternion.identity);
         frigate.name = ("Player2Frigate1");
         frigate.tag = ("Player");
-       // frigate.transform.parent = Player2Obj.transform;
         frigate.GetComponent<SpriteRenderer>().sprite = Player2Frigate;
         frigate.GetComponent<SpriteRenderer>().sortingOrder = 3;
         _ = frigate.AddComponent<movementScript>() as movementScript;
-        tileManager.playerShip2 = GameObject.Find("Player2Frigate1");
-        player2Ship = tileManager.playerShip2;
+        player2Ship = GameObject.Find("Player2Frigate1");
+        player2Ship.transform.parent = GlobalData.Player2Obj.transform;
 
         state = "MOVE";
     }
     private void Update()
     {
-        if (currentState.ToString() == "PLAYER1TURN")
-        {
-            if (playerMoved)
-            {
-                Debug.Log("Player1 Moved");
-                playerMoved = false;
-                SetState(new PLAYER2TURN(system: this));
-
-            }
-            if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-                if (hit.collider.tag == "Player" && hit.collider.name != "Player1Frigate1")
-                {
-                    float distY = Mathf.Abs((player1Ship.transform.position.y - hit.collider.gameObject.transform.position.y));
-                    float distX = Mathf.Abs((player1Ship.transform.position.x - hit.collider.gameObject.transform.position.x));
-                    if (distY <= 5 && distX <= 5)
-                    {
-                        Debug.Log(hit.collider.name);
-                        attacker = player1Ship;
-                        defender = hit.collider.gameObject;
-                        SetState(new COMBAT(system: this));
-                    }
-                }
-            }
-
-        }
-        if (currentState.ToString() == "PLAYER2TURN")
-        {
-            if (playerMoved)
-            {
-                Debug.Log("Player2 Moved");
-                playerMoved = false;
-                SetState(new PLAYER1TURN(system: this));
-
-            }
-            if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-                if (hit.collider.tag == "Player" && hit.collider.name != "Player2Frigate1")
-                {
-                    float distY = Mathf.Abs((player2Ship.transform.position.y - hit.collider.gameObject.transform.position.y));
-                    float distX = Mathf.Abs((player2Ship.transform.position.x - hit.collider.gameObject.transform.position.x));
-                    if (distY <= 5 && distX <= 5)
-                    {
-                        Debug.Log(hit.collider.name);
-                        attacker = player2Ship;
-                        defender = hit.collider.gameObject;
-                        SetState(new COMBAT(system: this));
-                    }
-                }
-            }
-        }
-
-
-        if (Player1Obj = null)
-        {
-            Debug.Log("All Player1 ships destroyed, Player 2 wins!");
-        }
-        if (Player2Obj = null)
-        {
-            Debug.Log("All Player2 ships destroyed, Player 1 wins!");
-        }
+        PlayerTurnsFunction();
         if (choice != 0)
         {
             buttonPressed = true;
@@ -190,6 +126,69 @@ public class GameManager : MonoBehaviour
         SetState(new PLAYER2TURN(system: this));
     }
 
+    public void PlayerTurnsFunction()
+    {
+        if (currentState.ToString() == "PLAYER1TURN")
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Debug.Log("Player1 Turn has ended");
+                //playerMoved = false;
+                SetState(new PLAYER2TURN(system: this));
+
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                if (hit.collider.tag == "Player" && hit.collider.transform.parent.name != "Player1Obj")
+                {
+                    foreach (Transform playerShips in GlobalData.Player1Obj.transform)
+                    {
+                        float distY = Mathf.Abs((playerShips.transform.position.y - hit.collider.gameObject.transform.position.y));
+                        float distX = Mathf.Abs((playerShips.transform.position.x - hit.collider.gameObject.transform.position.x));
+
+                        if (distY <= 5 && distX <= 5)
+                        {
+                            Debug.Log(hit.collider.name);
+                            attacker = player1Ship;
+                            defender = hit.collider.gameObject;
+                            SetState(new COMBAT(system: this));
+                        }
+                    }
+                }
+            }
+
+        }
+        if (currentState.ToString() == "PLAYER2TURN")
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Debug.Log("Player2 Turn has ended");
+               // playerMoved = false;
+                SetState(new PLAYER1TURN(system: this));
+
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                if (hit.collider.tag == "Player" && hit.collider.transform.parent.name != "Player2Obj")
+                {
+                    foreach (Transform playerShips in GlobalData.Player2Obj.transform)
+                    {
+                        float distY = Mathf.Abs((playerShips.transform.position.y - hit.collider.gameObject.transform.position.y));
+                        float distX = Mathf.Abs((playerShips.transform.position.x - hit.collider.gameObject.transform.position.x));
+                        if (distY <= 5 && distX <= 5)
+                        {
+                            Debug.Log(hit.collider.name);
+                            attacker = player2Ship;
+                            defender = hit.collider.gameObject;
+                            SetState(new COMBAT(system: this));
+                        }
+                    }
+                }
+            }
+        }
+    }
     public void TestForWinCondition()
     {
         //Test at the end of every turn phase

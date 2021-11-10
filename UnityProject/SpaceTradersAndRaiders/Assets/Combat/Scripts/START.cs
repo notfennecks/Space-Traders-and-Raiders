@@ -19,6 +19,7 @@ public class START : State
         //Debug.Log("Creating Universe...");
         //_system.StartCoroutine(_setupUniverse());
         _system.SetState(new PLAYER1TURN(_system));
+       
         return base.Start();
     }
     IEnumerator _setupUniverse()
@@ -33,7 +34,7 @@ public class START : State
         Vector3 startPos = new Vector3(firstTile.transform.position.x, firstTile.transform.position.y);
         _system.player1Ship = Object.Instantiate((GameObject)_system.playerPrefab, startPos, Quaternion.identity);
         _system.player1Ship.name = ("Player1Ship");
-        _system.player1Ship.transform.parent = _system.Player1Obj.transform;
+        _system.player1Ship.transform.parent = GlobalData.Player1Obj.transform;
        
         
 
@@ -45,7 +46,7 @@ public class START : State
         _system.player2Ship = Object.Instantiate((GameObject)_system.playerPrefab, startPos, Quaternion.identity);
         _system.player2Ship.name = ("Player2Ship");
         //_system.player2Ship.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        _system.player2Ship.transform.parent = _system.Player2Obj.transform;
+        _system.player2Ship.transform.parent = GlobalData.Player2Obj.transform;
     }
 
 }

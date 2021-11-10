@@ -12,7 +12,11 @@ public class PLAYER2TURN : State
 
     public override IEnumerator Player2Turn()
     {
-        Debug.Log("Player 2, choose to MOVE, SKIP, or ATTACK, if you are close enough to an enemy");
+        Debug.Log("Player 2, choose to MOVE, SKIP, or ATTACK, if you are close enough to an enemy. Press (2) to end your turn.");
+        foreach (Transform player2Ship in GlobalData.Player2Obj.transform)
+        {
+            player2Ship.GetComponent<movementScript>().movesLeft = 1;
+        }
         _system.StartCoroutine(_Player2Turn());
         return base.Player2Turn();
     }

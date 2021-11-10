@@ -11,7 +11,11 @@ using UnityEngine;
     
     public override IEnumerator Player1Turn()
     {
-        Debug.Log("Player 1, choose to MOVE, SKIP, or ATTACK, if you are close enough to an enemy");
+        Debug.Log("Player 1, choose to MOVE, SKIP, or ATTACK, if you are close enough to an enemy. Press (1) to end your turn.");
+        foreach(Transform player1Ship in GlobalData.Player1Obj.transform)
+        {
+            player1Ship.GetComponent<movementScript>().movesLeft = 1;
+        }
         _system.StartCoroutine(_Player1Turn());
 
         
