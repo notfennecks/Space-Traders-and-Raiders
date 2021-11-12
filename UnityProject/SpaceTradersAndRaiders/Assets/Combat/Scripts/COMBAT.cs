@@ -16,15 +16,15 @@ public class COMBAT : State
     public bool defenderWantsToFlee = false;
     public COMBAT(GameManager system) : base(system)
     {
-        SceneManager.LoadScene("Combat");
+        SceneManager.LoadScene("Combat UI");
         Debug.Log("Welcome to Combat");
-       // attacker = _system.attacker;
-        attacker = Object.Instantiate((GameObject)_system.playerPrefab, new Vector3(0, 0), Quaternion.identity);
+        // attacker = _system.attacker;
+        attacker = _system.attacker;
         attackerData = attacker.GetComponent<shipDataScript>();
 
 
         // defender = _system.defender;
-        defender = Object.Instantiate((GameObject)_system.playerPrefab, new Vector3(10, 10), Quaternion.identity);
+        defender = _system.defender;
         defenderData = defender.GetComponent<shipDataScript>();
         Debug.Log(choice);
 
@@ -50,7 +50,7 @@ public class COMBAT : State
         resetButton();
         attackerWantsToFlee = false;
         attackersTurn = true;
-        Debug.Log("Attacker, Attack or Attempt to Flee?");
+        Debug.Log("Attacker, Attack, Skip, or Attempt to Flee?");
         while (!_system.buttonPressed)
         {
             yield return null;
@@ -82,6 +82,7 @@ public class COMBAT : State
                 }
                 else { attackerWantsToFlee = true; }
                 break;
+            
 
         }
         _system.choice = 0;
@@ -94,12 +95,18 @@ public class COMBAT : State
         _system.choice = 0;
         defenderWantsToFlee = false;
         attackersTurn = false;
-        Debug.Log("Defender, Attack(1) or Attempt to Flee(2)?");
-        yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
-        _system.StopCoroutine("WaitForKeyDown");
-        switch (choice)
+        Debug.Log("Defender, Attack, Skip, or Attempt to Flee?");
+        while (!_system.buttonPressed)
+        {
+            yield return null;
+        }
+
+
+        Debug.Log(_system.choice);
+        switch (_system.choice)
         {
             case 1:
+                _system.choice = 0;
                 if (defenderData.laserBeams.Count <= 0)
                 {
                     Debug.Log("You cannot fight because you do not have any weapons, changing decision to flee...");
@@ -109,6 +116,7 @@ public class COMBAT : State
                 else { defenderWantsToFlee = false; }
                 break;
             case 2:
+                _system.choice = 0;
                 if (defenderData.Engines.Count <= 0)
                 {
                     Debug.Log("You cannot flee because you have no engines remaining. Fight(1) or Surrender(2)(surrender not available in prototype)");
@@ -117,8 +125,11 @@ public class COMBAT : State
                 }
                 else { defenderWantsToFlee = true; }
                 break;
+            
 
         }
+        _system.choice = 0;
+        _system.buttonPressed = false;
         determineDecisions();
     }
 
@@ -140,12 +151,16 @@ public class COMBAT : State
             }
             else if (attackerData.laserBeams.Count <= 0 && defenderData.laserBeams.Count > 0) //attacker doesn't have weapons
             {
-                Debug.Log("Attacker, you do not have any weapons, attempt to flee(1) or surrender(2)? (No surrender in prototype, destroys instead)");
-                _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
-                _system.StopCoroutine("WaitForKeyDown");
-                switch (choice)
+                Debug.Log("Attacker, you do not have any weapons, attempt to Run or Surrender? (No surrender in prototype, destroys instead)");
+                
+
+
+                Debug.Log(_system.choice);
+                switch (_system.choice)
                 {
-                    case 1:
+                    
+                    case 2:
+                        _system.choice = 0;
                         if (attackerData.Engines.Count <= 0)
                         {
                             Debug.Log("You cannot flee because you do not have any engines. Surrenduring... (destroy in prototype)");
@@ -170,7 +185,8 @@ public class COMBAT : State
                             attemptFlee();
                         }
                         break;
-                    case 2:
+                    case 3:
+                        _system.choice = 0;
                         Debug.Log("Surrendering (Destroy in prototype)");
                         string attackerName2 = _system.attacker.gameObject.name;
                         switch (attackerName2)
@@ -185,6 +201,7 @@ public class COMBAT : State
                                 break;
                         }
                         break;
+                    
 
 
                 }
@@ -193,12 +210,16 @@ public class COMBAT : State
             }
             else if (attackerData.laserBeams.Count > 0 && defenderData.laserBeams.Count <= 0) //defender doesn't have weapons
             {
-                Debug.Log("Defender, you do not have any weapons, attempt to flee(1) or surrender(2)? (No surrender in prototype, destroys instead)");
-                _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
-                _system.StopCoroutine("WaitForKeyDown");
-                switch (choice)
+                Debug.Log("Defender, you do not have any weapons, attempt to Run or Surrender? (No surrender in prototype, destroys instead)");
+               
+
+
+                Debug.Log(_system.choice);
+                switch (_system.choice)
                 {
-                    case 1:
+                    
+                    case 2:
+                        _system.choice = 0;
                         if (defenderData.Engines.Count <= 0)
                         {
                             Debug.Log("You cannot flee because you do not have any engines. Surrenduring... (destroy in prototype)");
@@ -223,7 +244,8 @@ public class COMBAT : State
                             attemptFlee();
                         }
                         break;
-                    case 2:
+                    case 3:
+                        _system.choice = 0;
                         Debug.Log("Surrendering (Destroy in prototype)");
                         string defenderName2 = _system.defender.gameObject.name;
                         switch (defenderName2)
@@ -238,7 +260,7 @@ public class COMBAT : State
                                 break;
                         }
                         break;
-
+                    
 
                 }
 
@@ -252,12 +274,13 @@ public class COMBAT : State
         {
             if (attackerData.Engines.Count <= 0)
             {
-                Debug.Log("Attacker, you do not have any Engines, try to fight back(1) or surrender(2)? (No surrender in prototype, destroys instead)");
-                _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
-                _system.StopCoroutine("WaitForKeyDown");
-                switch (choice)
+                Debug.Log("Attacker, you do not have any Engines, try to Attack or Surrender? (No surrender in prototype, destroys instead)");
+
+                Debug.Log(_system.choice);
+                switch (_system.choice)
                 {
                     case 1:
+                        _system.choice = 0;
                         if (attackerData.laserBeams.Count <= 0)
                         {
                             Debug.Log("You cannot fight back because you do not have any weapons. Surrenduring... (destroy in prototype)");
@@ -278,7 +301,9 @@ public class COMBAT : State
                         }
                         else if (defenderData.laserBeams.Count > 0) { fight(); }
                         break;
-                    case 2:
+                    
+                    case 3:
+                        _system.choice = 0;
                         Debug.Log("Surrendering (Destroy in prototype)");
                         string attackerName2 = _system.attacker.gameObject.name;
                         switch (attackerName2)
@@ -293,6 +318,7 @@ public class COMBAT : State
                                 break;
                         }
                         break;
+                    
 
 
                 }
@@ -317,12 +343,14 @@ public class COMBAT : State
         {
             if (defenderData.Engines.Count <= 0)
             {
-                Debug.Log("Defender, you do not have any Engines, try to fight back(1) or surrender(2)? (No surrender in prototype, destroys instead)");
-                _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2 }));
-                _system.StopCoroutine("WaitForKeyDown");
-                switch (choice)
+                Debug.Log("Defender, you do not have any Engines, try to Attack or Surrender? (No surrender in prototype, destroys instead)");
+
+
+                Debug.Log(_system.choice);
+                switch (_system.choice)
                 {
                     case 1:
+                        _system.choice = 0;
                         if (defenderData.laserBeams.Count <= 0)
                         {
                             Debug.Log("You cannot fight back because you do not have any weapons. Surrenduring... (destroy in prototype)");
@@ -343,7 +371,10 @@ public class COMBAT : State
                         }
                         else if (attackerData.laserBeams.Count > 0) { fight(); }
                         break;
-                    case 2:
+                    
+
+                    case 3:
+                        _system.choice = 0;
                         Debug.Log("Surrendering (Destroy in prototype)");
                         string defenderName2 = _system.defender.gameObject.name;
                         switch (defenderName2)
@@ -358,6 +389,8 @@ public class COMBAT : State
                                 break;
                         }
                         break;
+                        
+
 
 
                 }
@@ -481,41 +514,7 @@ public class COMBAT : State
        
     }
     
-    IEnumerator WaitForKeyDown(KeyCode[] codes)
-    {
-       
-        bool pressed = false;
-        while (!pressed)
-        {
-            foreach (KeyCode k in codes)
-            {
-                if (Input.GetKey(k))
-                {
-                    pressed = true;
-                    SetChoiceTo(k);
-                    break;
-                }
-                pressed = false;
-                choice = 0;
-            }
-           
-            yield return new WaitForSeconds(0f);
-        }
-    }
-
-    private void SetChoiceTo(KeyCode keyCode)
-    {
-        switch (keyCode)
-        {
-            case (KeyCode.Alpha1):
-                choice = 1;
-                break;
-            case (KeyCode.Alpha2):
-                choice = 2;
-                break;
-        }
-        Debug.Log(choice);
-    }
+   
 
     private void fireLaserBeams()
     {
@@ -556,7 +555,11 @@ public class COMBAT : State
         }
         else
         {
-            Debug.Log("Attacker, target empty component for Critical Hit(1), Laser Beams(2), or Engines(3)?");
+            //this is where the player will select the ties on the ship gris 
+           
+            //**********************************************************************
+
+            /*Debug.Log("Attacker, target empty component for Critical Hit(1), Laser Beams(2), or Engines(3)?");      
             yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 }));
             _system.StopCoroutine("WaitForKeyDown");
             switch (choice)
@@ -592,7 +595,7 @@ public class COMBAT : State
                     break;
 
             }
-
+            */
             choice = 0;
         }
         attackerSuccessfulRolls = 0;
@@ -608,42 +611,45 @@ public class COMBAT : State
         }
         else
         {
-            Debug.Log("Defender, target empty component for Critical Hit(1), Laser Beams(2), or Engines(3)?");
-            yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 }));
-            _system.StopCoroutine("WaitForKeyDown");
-            switch (choice)
-            {
-                case 1:
-                    attackerData.criticalHitsTaken++;
-                    if (attackerData.criticalHitsTaken >= attackerData.maxCriticalHits)
-                    {
-                        Debug.Log("Attacking ship has been destroyed");
-                        
-                        defenderData.criticalHitsTaken = 0;
-                        string defenderName = _system.defender.gameObject.name;
-                        switch (defenderName)
-                        {
-                            case "Player1Ship":
-                                GameObject.Destroy(attacker.gameObject);
-                                _system.SetState(new PLAYER1TURN(_system));
-                                break;
-                            case "Player2Ship":
-                                GameObject.Destroy(attacker.gameObject);
-                                _system.SetState(new PLAYER2TURN(_system));
-                                break;
-                        }
-                        
-                    }
-                    break;
-                case 2:
-                    attackerData.laserBeams.Remove(defenderSuccessfulRolls);
-            break;
-                case 3:
-                    attackerData.Engines.Remove(defenderSuccessfulRolls);
-                    break;
+            //this is where the player will select the ties on the ship gris 
 
-            }
+            //**********************************************************************
+            /* Debug.Log("Defender, target empty component for Critical Hit(1), Laser Beams(2), or Engines(3)?");
+             yield return _system.StartCoroutine(WaitForKeyDown(new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 }));
+             _system.StopCoroutine("WaitForKeyDown");
+             switch (choice)
+             {
+                 case 1:
+                     attackerData.criticalHitsTaken++;
+                     if (attackerData.criticalHitsTaken >= attackerData.maxCriticalHits)
+                     {
+                         Debug.Log("Attacking ship has been destroyed");
 
+                         defenderData.criticalHitsTaken = 0;
+                         string defenderName = _system.defender.gameObject.name;
+                         switch (defenderName)
+                         {
+                             case "Player1Ship":
+                                 GameObject.Destroy(attacker.gameObject);
+                                 _system.SetState(new PLAYER1TURN(_system));
+                                 break;
+                             case "Player2Ship":
+                                 GameObject.Destroy(attacker.gameObject);
+                                 _system.SetState(new PLAYER2TURN(_system));
+                                 break;
+                         }
+
+                     }
+                     break;
+                 case 2:
+                     attackerData.laserBeams.Remove(defenderSuccessfulRolls);
+             break;
+                 case 3:
+                     attackerData.Engines.Remove(defenderSuccessfulRolls);
+                     break;
+
+             }
+             */
             choice = 0;
         }
         defenderSuccessfulRolls = 0;
