@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
     //Terrestrial: 9 stells
     //Atmospheric: 3 stells
     //Gas: 6 stells
+
+    public Text[] player1Currency;
+    public Text[] player2Currency;
 
     public Sprite Player1Mine, Player2Mine;
     public Sprite Player1SpaceDock, Player2SpaceDock;
@@ -123,10 +127,26 @@ public class GameManager : MonoBehaviour
     private void Player1Turn()
     {
         SetState(new PLAYER1TURN(system: this));
+        GenerateResources("Player1");
     }
     private void Player2Turn()
     {
         SetState(new PLAYER2TURN(system: this));
+        GenerateResources("Player2");
+    }
+
+    public void GenerateResources(string player)
+    {
+        if(player == "Player1")
+        {
+            Debug.Log("Generated Player 1 resources for turn");
+            GlobalData.Player1Stells += 12;
+            player1Currency[0].text =  GlobalData.Player1Stells.ToString();    
+            GlobalData.Player1PurpleGalacite += 30;
+            player1Currency[1].text =  GlobalData.Player1PurpleGalacite.ToString();
+            GlobalData.Player1OrangeGalacite += 50;
+            player1Currency[2].text =  GlobalData.Player1OrangeGalacite.ToString();
+        }
     }
 
     public void PlayerTurnsFunction()
@@ -138,6 +158,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Player1 Turn has ended");
                 //playerMoved = false;
                 SetState(new PLAYER2TURN(system: this));
+                GenerateResources("Player2");
 
             }
             if (Input.GetMouseButtonDown(0))
@@ -169,6 +190,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Player2 Turn has ended");
                // playerMoved = false;
                 SetState(new PLAYER1TURN(system: this));
+                GenerateResources("Player1");
 
             }
             if (Input.GetMouseButtonDown(0))
