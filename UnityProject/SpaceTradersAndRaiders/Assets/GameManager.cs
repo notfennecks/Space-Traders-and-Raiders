@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject attacker, defender;
     [SerializeField] public GameObject presetMap;
     public movementScript moveScript;
+    public shipDataScript shipData; //temp until scroptObjects
     public tileManager tileManager;
     public bool playerMoved = false;
     public bool clickedOnPlayer = false;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
     {
         moveScript = GameObject.Find("movementScript").GetComponent<movementScript>();
         tileManager = GameObject.Find("tileManager").GetComponent<tileManager>();
+        shipData = GameObject.Find("shipDataManager").GetComponent<shipDataScript>();
         SetState(new START(system: this));
 
     }
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
         frigate.GetComponent<SpriteRenderer>().sprite = Player1Frigate;
         frigate.GetComponent<SpriteRenderer>().sortingOrder = 3;
         _ = frigate.AddComponent<movementScript>() as movementScript;
+        _ = frigate.AddComponent<shipDataScript>() as shipDataScript;
         player1Ship = GameObject.Find("Player1Frigate1");
         player1Ship.transform.parent = GlobalData.Player1Obj.transform;
 
@@ -99,9 +102,9 @@ public class GameManager : MonoBehaviour
         frigate.GetComponent<SpriteRenderer>().sprite = Player2Frigate;
         frigate.GetComponent<SpriteRenderer>().sortingOrder = 3;
         _ = frigate.AddComponent<movementScript>() as movementScript;
+        _ = frigate.AddComponent<shipDataScript>() as shipDataScript;
         player2Ship = GameObject.Find("Player2Frigate1");
         player2Ship.transform.parent = GlobalData.Player2Obj.transform;
-
         state = "MOVE";
     }
     private void Update()
