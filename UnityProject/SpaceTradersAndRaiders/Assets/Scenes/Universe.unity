@@ -614,7 +614,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.09803922, g: 0.07058824, b: 0.12156863, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -713,8 +713,6 @@ MonoBehaviour:
   Player1HomePlanet: 
   Player2HomeTile: 
   Player2HomePlanet: 
-  Player1Stells: 0
-  Player2Stells: 0
   Player1Mine: {fileID: -6687294807939097988, guid: 3ec60293ed38a584998fee3f12164f81, type: 3}
   Player2Mine: {fileID: -6687294807939097988, guid: 3ec60293ed38a584998fee3f12164f81, type: 3}
   Player1SpaceDock: {fileID: -7371495730573825123, guid: 958481a7b44908a40b4bf967e62990a0, type: 3}
@@ -727,8 +725,6 @@ MonoBehaviour:
   playerPrefab: {fileID: 0}
   player1Ship: {fileID: 0}
   player2Ship: {fileID: 0}
-  Player1Obj: {fileID: 0}
-  Player2Obj: {fileID: 0}
   Player: []
   shipSprites: []
   attacker: {fileID: 0}
@@ -784,6 +780,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManage: {fileID: 968185528}
+  inRange: 0
+  movesLeft: 1
 --- !u!4 &1171629088
 Transform:
   m_ObjectHideFlags: 0
