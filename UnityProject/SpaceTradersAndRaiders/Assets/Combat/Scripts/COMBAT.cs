@@ -63,7 +63,7 @@ public class COMBAT : State
 
             case 1:
                 _system.choice = 0;
-                if (attackerData.laserBeams.Count <= 0)
+                if (attackerData.laserBeams.Count <= 0 && attackerData.missiles.Count <= 0 && attackerData.marauders.Count <= 0)
                 {
 
                     Debug.Log("You cannot fight because you do not have any weapons, changing decision to flee...");
@@ -107,7 +107,7 @@ public class COMBAT : State
         {
             case 1:
                 _system.choice = 0;
-                if (defenderData.laserBeams.Count <= 0)
+                if (defenderData.laserBeams.Count <= 0 && defenderData.missiles.Count <= 0)
                 {
                     Debug.Log("You cannot fight because you do not have any weapons, changing decision to flee...");
                     defenderWantsToFlee = true;
@@ -144,12 +144,12 @@ public class COMBAT : State
         }
         else if (!attackerWantsToFlee && !defenderWantsToFlee) //both want to fight
         {
-            if (attackerData.laserBeams.Count <= 0 && defenderData.laserBeams.Count <= 0) //noone has weapons
+            if (attackerData.laserBeams.Count <= 0 && defenderData.laserBeams.Count <= 0 && attackerData.marauders.Count <= 0 && defenderData.missiles.Count <= 0 && attackerData.missiles.Count <= 0) //noone has weapons
             {
                 Debug.Log("Nobody has any weapons, fleeing battle...");
                 flee();
             }
-            else if (attackerData.laserBeams.Count <= 0 && defenderData.laserBeams.Count > 0) //attacker doesn't have weapons
+            else if (attackerData.laserBeams.Count <= 0 && attackerData.missiles.Count <= 0 && attackerData.marauders.Count <= 0) //attacker doesn't have weapons
             {
                 Debug.Log("Attacker, you do not have any weapons, attempt to Run or Surrender? (No surrender in prototype, destroys instead)");
                 
@@ -208,7 +208,7 @@ public class COMBAT : State
 
                 choice = 0;
             }
-            else if (attackerData.laserBeams.Count > 0 && defenderData.laserBeams.Count <= 0) //defender doesn't have weapons
+            else if (defenderData.missiles.Count <= 0 && defenderData.laserBeams.Count <= 0) //defender doesn't have weapons
             {
                 Debug.Log("Defender, you do not have any weapons, attempt to Run or Surrender? (No surrender in prototype, destroys instead)");
                
@@ -281,9 +281,9 @@ public class COMBAT : State
                 {
                     case 1:
                         _system.choice = 0;
-                        if (attackerData.laserBeams.Count <= 0)
+                        if (attackerData.laserBeams.Count <= 0 && attackerData.missiles.Count <= 0 && attackerData.marauders.Count <= 0)
                         {
-                            Debug.Log("You cannot fight back because you do not have any weapons. Surrenduring... (destroy in prototype)");
+                            Debug.Log("You cannot fight back because you do not have any weapons. Surrendering... (destroy in prototype)");
 
                             string attackerName1 = _system.attacker.gameObject.name;
                             switch (attackerName1)
@@ -299,7 +299,7 @@ public class COMBAT : State
                             }
 
                         }
-                        else if (defenderData.laserBeams.Count > 0) { fight(); }
+                        else if (defenderData.laserBeams.Count > 0 || defenderData.missiles.Count > 0) { fight(); }
                         break;
                     
                     case 3:
@@ -325,7 +325,7 @@ public class COMBAT : State
 
                 choice = 0;
             }
-            if (defenderData.laserBeams.Count <= 0) //defender wants to fight but doesn't have any weapons
+            if (defenderData.laserBeams.Count <= 0 && defenderData.missiles.Count <= 0) //defender wants to fight but doesn't have any weapons
             {
                 Debug.Log("Defender, you do not have any weapons, fleeing...");
                 flee();
@@ -351,7 +351,7 @@ public class COMBAT : State
                 {
                     case 1:
                         _system.choice = 0;
-                        if (defenderData.laserBeams.Count <= 0)
+                        if (defenderData.laserBeams.Count <= 0 || defenderData.missiles.Count <= 0)
                         {
                             Debug.Log("You cannot fight back because you do not have any weapons. Surrenduring... (destroy in prototype)");
 
@@ -369,7 +369,7 @@ public class COMBAT : State
                             }
 
                         }
-                        else if (attackerData.laserBeams.Count > 0) { fight(); }
+                        else if (attackerData.laserBeams.Count > 0 || attackerData.missiles.Count > 0 || attackerData.marauders.Count > 0) { fight(); }
                         break;
                     
 
@@ -397,7 +397,7 @@ public class COMBAT : State
 
                 choice = 0;
             }
-            if (attackerData.laserBeams.Count <= 0) //attacker wants to fight but doesn't have any weapons
+            if (attackerData.laserBeams.Count <= 0 && attackerData.missiles.Count <= 0 && attackerData.marauders.Count <= 0) //attacker wants to fight but doesn't have any weapons
             {
                 Debug.Log("Attacker, you do not have any weapons, fleeing...");
                 flee();
@@ -419,6 +419,17 @@ public class COMBAT : State
         fireLaserBeams();    //roll die for lasers and subtract health and armor
         _system.StartCoroutine(dealDamageToDefender());
         _system.StartCoroutine(dealDamageToAttacker());
+        fireMissiles();
+        _system.StartCoroutine(dealDamageToDefender());
+        _system.StartCoroutine(dealDamageToAttacker());
+        if (attackerData.marauders.Count > 0 && defenderData.laserBeams.Count <= 0 && defenderData.missiles.Count <= 0)
+        {
+            marauderCombat();
+            if (defenderData.marauders.Count <= 0)
+            {
+                //attacker capture enemy ship
+            }
+        }
         if (attackersTurn)
         {
            _system.StartCoroutine(defenderTurn());
@@ -518,6 +529,8 @@ public class COMBAT : State
 
     private void fireLaserBeams()
     {
+        attackerSuccessfulRolls = 0;
+        defenderSuccessfulRolls = 0;
         if (attackerData.laserBeams.Count > 0)
         {
             foreach (int i in attackerData.laserBeams)
@@ -544,7 +557,87 @@ public class COMBAT : State
         }
         Debug.Log("Attacker fired " + attackerSuccessfulRolls + " laser beams");
         Debug.Log("Defender fired " + defenderSuccessfulRolls + " laser beams");
+        attackerSuccessfulRolls = 0;
+        defenderSuccessfulRolls = 0;
     }
+    private void fireMissiles()
+    {
+        attackerSuccessfulRolls = 0;
+        defenderSuccessfulRolls = 0;
+        if (attackerData.missiles.Count > 0)
+        {
+            foreach (int i in attackerData.missiles)
+            {
+                int result = rollDie();
+                if (result <= 3)
+                {
+                    int prevent = rollDie();
+                        if (prevent <= 3)
+                    { defenderSuccessfulRolls--; }
+                    attackerSuccessfulRolls++;
+                }
+
+            }
+        }
+        if (defenderData.laserBeams.Count > 0)
+        {
+            foreach (int i in defenderData.laserBeams)
+            {
+                int result = rollDie();
+                if (result <= 3)
+                {
+                    int prevent = rollDie();
+                    if (prevent <= 3)
+                    { attackerSuccessfulRolls--; }
+                    defenderSuccessfulRolls++;
+                }
+
+            }
+        }
+        Debug.Log("Attacker fired " + attackerSuccessfulRolls + " missiles");
+        Debug.Log("Defender fired " + defenderSuccessfulRolls + " missiles");
+        attackerSuccessfulRolls = 0;
+        defenderSuccessfulRolls = 0;
+    }
+
+    private void marauderCombat()
+    {
+        if (attackerData.marauders.Count > 0)
+        {
+            foreach (int i in attackerData.marauders)
+            {
+                int result = rollDie();
+                if (result <= 3)
+                {
+                    defenderData.marauders.Remove(3);
+                }
+
+            }
+            
+        }
+        if (defenderData.marauders.Count > 0)
+        {
+            foreach (int i in defenderData.marauders)
+            {
+                int result = rollDie();
+                if (result <= 3)
+                {
+                    attackerData.marauders.Remove(3);
+                }
+
+            }
+        }
+        if (defenderData.shieldGens.Count > 0)
+        {
+            while (attackerData.marauders.Count > 0)
+            {
+                attackerData.marauders.Remove(3);
+            }
+        }
+        Debug.Log("Attacker units " + attackerData.marauders.Count);
+        Debug.Log("Defender units " + defenderData.marauders.Count);
+    }
+
     IEnumerator dealDamageToDefender()
     {
 
