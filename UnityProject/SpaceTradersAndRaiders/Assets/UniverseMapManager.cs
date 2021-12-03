@@ -5,11 +5,13 @@ using UnityEngine;
 public class UniverseMapManager : MonoBehaviour
 {
     public string viewMode;
-    public string currentSector;
+    private int currentSector;
+    private GameObject currentPlanetView = null;
 
     public GameObject SectorView;
     public GameObject TileViews;
     public GameObject PlanetViews;
+
 
     public Camera camera;
     private Vector2 defaultCamPos = new Vector2(0f, 0f);
@@ -23,6 +25,9 @@ public class UniverseMapManager : MonoBehaviour
     {
         viewMode = "Sector";
         camera.orthographicSize = 3.5f;
+        SectorView.SetActive(true);
+        TileViews.SetActive(false);
+        PlanetViews.SetActive(false);
     }
 
     void Update()
@@ -35,7 +40,7 @@ public class UniverseMapManager : MonoBehaviour
             }
             if(viewMode == "Planet")
             {
-                SwitchToTileView(1);
+                SwitchToTileView(currentSector);
             }
         }
     }
@@ -46,10 +51,8 @@ public class UniverseMapManager : MonoBehaviour
         camera.transform.position = defaultCamPos;
         viewMode = "Sector";
         SectorView.SetActive(true);
-        TileViews.transform.GetChild(0).gameObject.SetActive(true);
-        TileViews.transform.GetChild(1).gameObject.SetActive(true);
-        TileViews.transform.GetChild(2).gameObject.SetActive(true);
-        TileViews.transform.GetChild(3).gameObject.SetActive(true);
+        TileViews.SetActive(false);
+        PlanetViews.SetActive(false);
     }
 
     public void SwitchToTileView(int sector)
@@ -58,6 +61,7 @@ public class UniverseMapManager : MonoBehaviour
         viewMode = "Tile";
         TileViews.SetActive(true);
         SectorView.SetActive(false);
+        PlanetViews.SetActive(false);
         if(sector == 1)
         {
             camera.transform.position = sector1CamPos;
@@ -93,10 +97,16 @@ public class UniverseMapManager : MonoBehaviour
 
     }
 
-    public void SwitchToPlanetView(int tile)
+    public void SwitchToPlanetView(int sector, int tile)
     {
+        camera.orthographicSize = 3.5f;
+        camera.transform.position = defaultCamPos;
         viewMode = "Planet";
         TileViews.SetActive(false);
+        PlanetViews.SetActive(true);
+        PlanetViews.transform.GetChild(sector - 1).transform.GetChild(tile - 1).gameObject.SetActive(true);
+        currentPlanetView = PlanetViews.transform.GetChild(sector - 1).transform.GetChild(tile - 1).gameObject;
+        currentSector = sector;
     }
 
 }
