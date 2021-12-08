@@ -21,11 +21,12 @@ public class COMBAT : State
         // attacker = _system.attacker;
         attacker = _system.attacker;
         attackerData = attacker.GetComponent<shipDataScript>();
-
+        //attackerData = GameObject.Find("CombatStats(Hardcoded)").GetComponent<shipDataScript>();
 
         // defender = _system.defender;
         defender = _system.defender;
         defenderData = defender.GetComponent<shipDataScript>();
+        //defenderData = GameObject.Find("CombatStats(Hardcoded)").GetComponent<shipDataScript>();
         Debug.Log(choice);
 
         _system.StartCoroutine(Combat(_system.attacker, _system.defender));
