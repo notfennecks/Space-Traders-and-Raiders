@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.G))
         {
             GenerateResources("Player1");
+            GenerateResources("Player2");
         }
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -161,21 +162,21 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Generated Player 1 resources for turn | Total mines: " + GlobalData.Player1TotalMines);
             GlobalData.Player1Stells += 12 * GlobalData.Player1TotalMines;
-            player1Currency[0].text =  GlobalData.Player1Stells.ToString();    
+            player1Currency[0].text = GlobalData.Player1Stells.ToString();    
             GlobalData.Player1PurpleGalacite += 30 * GlobalData.Player1TotalMines;
-            player1Currency[1].text =  GlobalData.Player1PurpleGalacite.ToString();
+            player1Currency[1].text = GlobalData.Player1PurpleGalacite.ToString();
             GlobalData.Player1OrangeGalacite += 50 * GlobalData.Player1TotalMines;
-            player1Currency[2].text =  GlobalData.Player1OrangeGalacite.ToString();
+            player1Currency[2].text = GlobalData.Player1OrangeGalacite.ToString();
         }
         if(player == "Player2")
         {
             Debug.Log("Generated Player 2 resources for turn | Total mines: " + GlobalData.Player2TotalMines);
             GlobalData.Player2Stells += 12 * GlobalData.Player2TotalMines;
-            player2Currency[0].text =  GlobalData.Player2Stells.ToString();    
+            player2Currency[0].text = GlobalData.Player2Stells.ToString();    
             GlobalData.Player2PurpleGalacite += 30 * GlobalData.Player2TotalMines;
-            player2Currency[1].text =  GlobalData.Player2PurpleGalacite.ToString();
+            player2Currency[1].text = GlobalData.Player2PurpleGalacite.ToString();
             GlobalData.Player2OrangeGalacite += 50 * GlobalData.Player2TotalMines;
-            player2Currency[2].text =  GlobalData.Player2OrangeGalacite.ToString();
+            player2Currency[2].text = GlobalData.Player2OrangeGalacite.ToString();
         }
     }
 

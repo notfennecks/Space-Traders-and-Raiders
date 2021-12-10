@@ -12,7 +12,7 @@ public class TitleScreen : MonoBehaviour
 
     public void OptionsButton()
     {
-
+        SceneManager.LoadScene(2);
     }
 
     public void CreditsButton()
