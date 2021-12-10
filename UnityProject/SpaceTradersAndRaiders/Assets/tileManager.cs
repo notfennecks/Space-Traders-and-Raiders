@@ -6,7 +6,6 @@ public class tileManager : MonoBehaviour
 {
     [HideInInspector]
     public GameManager gameManager;
-    public SpriteRenderer highlight;
     public GameObject playerShip1, playerShip2;
     private bool p1inMoveRange = false;
     private bool p2inMoveRange = false;
@@ -30,13 +29,6 @@ public class tileManager : MonoBehaviour
     }
     void OnMouseEnter()
     {
-        if(gameManager.state == "BASE_SELECTION")
-        {
-            if(gameManager.BasesSelected == false && gameManager.Player1HomeTile != this.name)
-            {
-                highlight.enabled = true;
-            }
-        }
         if (gameManager.state == "MOVE")
         {
             //for player1
@@ -47,7 +39,6 @@ public class tileManager : MonoBehaviour
                 float distXP1 = Mathf.Abs((playerShips.transform.position.x - transform.position.x));
                 if (gameManager.currentState.ToString() == "PLAYER1TURN" && distYP1 <= 5 && distXP1 <= 5 && player1Ships.movesLeft >=1)
                 {
-                    highlight.enabled = true;
                     //p1inMoveRange = true;
                     playerShips.GetComponent<movementScript>().inRange = true;
                 }
@@ -61,7 +52,6 @@ public class tileManager : MonoBehaviour
                 float distXP2 = Mathf.Abs((playerShips.transform.position.x - transform.position.x));
                 if (gameManager.currentState.ToString() == "PLAYER2TURN" && distYP2 <= 5 && distXP2 <= 5 && player2Ships.movesLeft >=1)
                 {
-                    highlight.enabled = true;
                     //p2inMoveRange = true;
                     playerShips.GetComponent<movementScript>().inRange = true;
                 }
@@ -71,27 +61,17 @@ public class tileManager : MonoBehaviour
     }
     void OnMouseExit()
     {
-        if(gameManager.state == "BASE_SELECTION")
-        {
-            if(gameManager.BasesSelected == false)
-            {
-                highlight.enabled = false;
-            }
-        }
-        if (gameManager.state == "MOVE")
-        {
-            highlight.enabled = false;
-        }
-
        
     }
+
     void OnMouseDown()
     {
        
-        if(gameManager.state == "BASE_SELECTION" && this.transform.childCount > 2)
+        if(gameManager.state == "BASE_SELECTION")
         {
             if(gameManager.BaseSelectionTurn == 1)
             {
+                Debug.Log("base: " + this.name);
                 gameManager.Player1HomeTile = this.name;
                 gameManager.BaseSelectionTurn = 2;
 
@@ -105,11 +85,11 @@ public class tileManager : MonoBehaviour
                 }
                 gameManager.Player2HomeTile = this.name;
                 gameManager.BasesSelected = true;
-                highlight.enabled = false;
                 gameManager.Player2HomePlanet = this.transform.GetChild(1).name;
                 gameManager.AssignStartingFacilities();
             }
         }
+
         if (gameManager.state == "MOVE") 
         {
             foreach (Transform player1Ships in GlobalData.Player1Obj.transform)

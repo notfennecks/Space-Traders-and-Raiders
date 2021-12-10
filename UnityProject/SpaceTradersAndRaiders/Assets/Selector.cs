@@ -8,12 +8,11 @@ public class Selector : MonoBehaviour
 
     private void Start() 
     {
-        universeMapManager = this.transform.root.GetComponent<UniverseMapManager>();
+        universeMapManager = this.transform.root.GetChild(2).GetComponent<UniverseMapManager>();
     }
 
     private void OnMouseDown()
     {
-        Debug.Log("Clicked: " + this.name);
         
         //Sector View
         if(this.name.Contains("Sector"))

@@ -13,18 +13,9 @@ public class UniverseMapManager : MonoBehaviour
     public GameObject PlanetViews;
 
 
-    public Camera camera;
-    private Vector2 defaultCamPos = new Vector2(0f, 0f);
-    private Vector2 sector1CamPos = new Vector2(-1.62f, 1.6f);
-    private Vector2 sector2CamPos = new Vector2(1.62f, 1.6f);
-    private Vector2 sector3CamPos = new Vector2(-1.63f, -1.63f);
-    private Vector2 sector4CamPos = new Vector2(1.62f, -1.63f);
-
-
     void Start() 
     {
         viewMode = "Sector";
-        camera.orthographicSize = 3.5f;
         SectorView.SetActive(true);
         TileViews.SetActive(false);
         PlanetViews.SetActive(false);
@@ -43,12 +34,31 @@ public class UniverseMapManager : MonoBehaviour
                 SwitchToTileView(currentSector);
             }
         }
+
+        if(Input.GetKeyDown("space") && GlobalData.State == "BASE_SELECTION" && viewMode == "Planet")
+        {
+            if(GlobalData.BaseSelectTracker == 1)
+            {
+                GlobalData.Player1HomeSector = currentSector;
+                string planetName = currentPlanetView.name.Replace("Tile", "");
+                GlobalData.Player1HomePlanet = int.Parse(planetName);
+                GlobalData.BaseSelectTracker++;
+            }
+            else if(GlobalData.BaseSelectTracker == 2)
+            {
+                if(GlobalData.Player1HomeSector != currentSector)
+                {
+                    GlobalData.Player2HomeSector = currentSector;
+                    string planetName = currentPlanetView.name.Replace("Tile", "");
+                    GlobalData.Player2HomePlanet = int.Parse(planetName);
+                    GlobalData.BaseSelectTracker++;
+                }
+            }
+        }
     }
 
     public void SwitchToSectorView()
     {
-        camera.orthographicSize = 3.5f;
-        camera.transform.position = defaultCamPos;
         viewMode = "Sector";
         SectorView.SetActive(true);
         TileViews.SetActive(false);
@@ -57,14 +67,12 @@ public class UniverseMapManager : MonoBehaviour
 
     public void SwitchToTileView(int sector)
     {
-        camera.orthographicSize = 1.7f;
         viewMode = "Tile";
         TileViews.SetActive(true);
         SectorView.SetActive(false);
         PlanetViews.SetActive(false);
         if(sector == 1)
         {
-            camera.transform.position = sector1CamPos;
             TileViews.transform.GetChild(0).gameObject.SetActive(true);
             TileViews.transform.GetChild(1).gameObject.SetActive(false);
             TileViews.transform.GetChild(2).gameObject.SetActive(false);
@@ -72,7 +80,6 @@ public class UniverseMapManager : MonoBehaviour
         }
         if(sector == 2)
         {
-            camera.transform.position = sector2CamPos;
             TileViews.transform.GetChild(0).gameObject.SetActive(false);
             TileViews.transform.GetChild(1).gameObject.SetActive(true);
             TileViews.transform.GetChild(2).gameObject.SetActive(false);
@@ -80,7 +87,6 @@ public class UniverseMapManager : MonoBehaviour
         }
         if(sector == 3)
         {
-            camera.transform.position = sector3CamPos;
             TileViews.transform.GetChild(0).gameObject.SetActive(false);
             TileViews.transform.GetChild(1).gameObject.SetActive(false);
             TileViews.transform.GetChild(2).gameObject.SetActive(true);
@@ -88,7 +94,6 @@ public class UniverseMapManager : MonoBehaviour
         }
         if(sector == 4)
         {
-            camera.transform.position = sector4CamPos;
             TileViews.transform.GetChild(0).gameObject.SetActive(false);
             TileViews.transform.GetChild(1).gameObject.SetActive(false);
             TileViews.transform.GetChild(2).gameObject.SetActive(false);
@@ -99,14 +104,31 @@ public class UniverseMapManager : MonoBehaviour
 
     public void SwitchToPlanetView(int sector, int tile)
     {
-        camera.orthographicSize = 3.5f;
-        camera.transform.position = defaultCamPos;
-        viewMode = "Planet";
-        TileViews.SetActive(false);
-        PlanetViews.SetActive(true);
-        PlanetViews.transform.GetChild(sector - 1).transform.GetChild(tile - 1).gameObject.SetActive(true);
-        currentPlanetView = PlanetViews.transform.GetChild(sector - 1).transform.GetChild(tile - 1).gameObject;
-        currentSector = sector;
+        if(PlanetViews.transform.GetChild(sector - 1).transform.GetChild(tile - 1).gameObject.transform.childCount == 0)
+        {
+            return;
+        }
+        else
+        {
+            viewMode = "Planet";
+            PlanetViews.SetActive(true);
+            HidePlanets();
+            TileViews.SetActive(false);
+            PlanetViews.transform.GetChild(sector - 1).transform.GetChild(tile - 1).gameObject.SetActive(true);
+            currentPlanetView = PlanetViews.transform.GetChild(sector - 1).transform.GetChild(tile - 1).gameObject;
+            currentSector = sector;
+        }
+    }
+
+    private void HidePlanets()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            for(int x = 0; x < 16; x++)
+            {
+                PlanetViews.transform.GetChild(i).transform.GetChild(x).gameObject.SetActive(false);
+            }
+        }
     }
 
 }

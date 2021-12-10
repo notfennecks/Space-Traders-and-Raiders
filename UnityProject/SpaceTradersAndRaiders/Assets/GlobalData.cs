@@ -5,16 +5,28 @@ using UnityEngine;
 public static class GlobalData
 {
     //Player mineral + currency ------------------
+    public static string State = "BASE_SELECTION";
+    public static int BaseSelectTracker = 1;
     //Player 1
+    public static string Player1Name = "";
+    public static string Player1Color = "";
     public static int Player1Stells = 0;
     public static int Player1OrangeGalacite = 0;
     public static int Player1PurpleGalacite = 0;
     public static GameObject Player1Obj = GameObject.Find("Player1Obj");
+    public static int Player1HomeSector;
+    public static int Player1HomePlanet;
+    public static int Player1TotalMines;
     //Player 2
+    public static string Player2Name = "";
+    public static string Player2Color = "";
     public static int Player2Stells = 0;
     public static int Player2OrangeGalacite = 0;
     public static int Player2PurpleGalacite = 0;
     public static GameObject Player2Obj = GameObject.Find("Player2Obj");
+    public static int Player2HomeSector;
+    public static int Player2HomePlanet;
+    public static int Player2TotalMines;
     //Player 3
     //public static int Player3Stells = 0;
     //public static int Player3OrangeGalacite = 0;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameCreationMenu : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class GameCreationMenu : MonoBehaviour
     public Text mapDisplay;
     public CanvasGroup mapsCanvasGroup;
 
+    public CanvasGroup uniSizeCanvasGroup;
+    public CanvasGroup densityCanvasGroup;
+
     public Image Green;
     public Image Yellow;
     public Image Blue;
@@ -30,12 +34,27 @@ public class GameCreationMenu : MonoBehaviour
     private Color full = new Color32(255, 255, 255, 255);
     private Color tint = new Color32(255, 255, 255, 50);
 
+    public Button GreenAdd;
+    public Button YellowAdd;
+    public Button BlueAdd;
+    public Button RedAdd;
+
     public Sprite ready;
     public Sprite notReady;
     public Image greenReadyStatus;
     public Image yellowReadyStatus;
     public Image blueReadyStatus;
     public Image redReadyStatus;
+
+    public TMP_InputField greenPlayerName;
+    public TMP_InputField yellowPlayerName;
+    public TMP_InputField bluePlayerName;
+    public TMP_InputField redPlayerName;
+ 
+    string player1 = "";
+    bool player1Ready = false;
+    string player2 = "";
+    bool player2Ready = false;
 
     void Start() 
     {
@@ -46,12 +65,70 @@ public class GameCreationMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(2);
+        if(player1Ready == true && player2Ready == true)
+        {
+            SceneManager.LoadScene(2);
+            GlobalData.Player1Color = player1;
+            GlobalData.Player2Color = player2;
+
+            switch (player1)
+            {
+            case "Green":
+                GlobalData.Player1Name = greenPlayerName.text;
+                break;
+            case "Yellow":
+                GlobalData.Player1Name = yellowPlayerName.text;
+                break;
+            case "Blue":
+                GlobalData.Player1Name = bluePlayerName.text;
+                break;
+            case "Red":
+                GlobalData.Player1Name = redPlayerName.text;
+                break;
+            default:
+                //nice
+                break;
+            }
+
+            switch (player2)
+            {
+            case "Green":
+                GlobalData.Player2Name = greenPlayerName.text;
+                break;
+            case "Yellow":
+                GlobalData.Player2Name = yellowPlayerName.text;
+                break;
+            case "Blue":
+                GlobalData.Player2Name = bluePlayerName.text;
+                break;
+            case "Red":
+                GlobalData.Player2Name = redPlayerName.text;
+                break;
+            default:
+                //nice
+                break;
+            }
+        }
     }
 
     private void Update()
     {
         ShowTintMapSelection();
+        ShowTintUniSizeDensitySelection();
+        if(player2 != "")
+        {
+            GreenAdd.interactable = false;
+            YellowAdd.interactable = false;
+            BlueAdd.interactable = false;
+            RedAdd.interactable = false;  
+        }
+        else
+        {
+            GreenAdd.interactable = true;
+            YellowAdd.interactable = true;
+            BlueAdd.interactable = true;
+            RedAdd.interactable = true;
+        }
     }
 
     private void ShowTintMapSelection()
@@ -64,6 +141,22 @@ public class GameCreationMenu : MonoBehaviour
         {
             mapsCanvasGroup.alpha = 0.2f;
             mapDisplay.text = "....";
+        }
+    }
+
+    private void ShowTintUniSizeDensitySelection()
+    {
+        if(mapTypeDisplay.text == "Preset")
+        {
+            uniSizeCanvasGroup.alpha = 0.2f;
+            densityCanvasGroup.alpha = 0.2f;
+            universeSizeDisplay.text = "....";
+            densityDisplay.text = "....";
+        }
+        else
+        {
+            uniSizeCanvasGroup.alpha = 1f;
+            densityCanvasGroup.alpha = 1f;
         }
     }
 
@@ -149,46 +242,121 @@ public class GameCreationMenu : MonoBehaviour
 
     public void AddGreenPlayer()
     {
-        Green.color = full;
+        if(player1 == "")
+        {
+            player1 = "Green";
+            Green.color = full;
+        }
+        else if(player2 == "")
+        {
+            player2 = "Green";
+            Green.color = full;
+        }
+        Debug.Log("Player 1 is: " + player1 + " Player 2 is: " + player2);
     }
 
     public void RemoveGreenPlayer()
     {
         Green.color = tint;
         greenReadyStatus.sprite = notReady;
+        if(player1 == "Green")
+        {
+            player1 = "";
+        }
+        else if(player2 == "Green")
+        {
+            player2 = "";
+        }
     }
 
     public void AddYellowPlayer()
     {
-        Yellow.color = full;
+        if(player1 == "")
+        {
+            player1 = "Yellow";
+            Yellow.color = full;
+        }
+        else if(player2 == "")
+        {
+            player2 = "Yellow";
+            Yellow.color = full;
+        }
+        Debug.Log("Player 1 is: " + player1 + " Player 2 is: " + player2);
+        
     }
 
     public void RemoveYellowPlayer()
     {
         Yellow.color = tint;
         yellowReadyStatus.sprite = notReady;
+        if(player1 == "Yellow")
+        {
+            player1 = "";
+        }
+        else if(player2 == "Yellow")
+        {
+            player2 = "";
+        }
     }
 
     public void AddBluePlayer()
     {
-        Blue.color = full;
+        if(player1 == "")
+        {
+            player1 = "Blue";
+            Blue.color = full;
+        }
+        else if(player2 == "")
+        {
+            player2 = "Blue";
+            Blue.color = full;
+        }
+        Debug.Log("Player 1 is: " + player1 + " Player 2 is: " + player2);
+        
     }
 
     public void RemoveBluePlayer()
     {
         Blue.color = tint;
         blueReadyStatus.sprite = notReady;
+        if(player1 == "Blue")
+        {
+            player1 = "";
+        }
+        else if(player2 == "Blue")
+        {
+            player2 = "";
+        }
     }
 
     public void AddRedPlayer()
     {
-        Red.color = full;
+        if(player1 == "")
+        {
+            player1 = "Red";
+            Red.color = full;
+        }
+        else if(player2 == "")
+        {
+            player2 = "Red";
+            Red.color = full;
+        }
+        Debug.Log("Player 1 is: " + player1 + " Player 2 is: " + player2);
+
     }
 
     public void RemoveRedPlayer()
     {
         Red.color = tint;
         redReadyStatus.sprite = notReady;
+        if(player1 == "Red")
+        {
+            player1 = "";
+        }
+        else if(player2 == "Red")
+        {
+            player2 = "";
+        }
     }
 
     public void ToggleGreenReady()
@@ -196,10 +364,26 @@ public class GameCreationMenu : MonoBehaviour
         if(greenReadyStatus.sprite == ready)
         {
             greenReadyStatus.sprite = notReady;
+            if(player1 == "Green")
+            {
+                player1Ready = false;
+            }
+            else if(player2 == "Green")
+            {
+                player2Ready = false;
+            }
         }
         else
         {
             greenReadyStatus.sprite = ready;
+            if(player1 == "Green")
+            {
+                player1Ready = true;
+            }
+            else if(player2 == "Green")
+            {
+                player2Ready = true;
+            }
         }
     }
 
@@ -208,10 +392,26 @@ public class GameCreationMenu : MonoBehaviour
         if(yellowReadyStatus.sprite == ready)
         {
             yellowReadyStatus.sprite = notReady;
+            if(player1 == "Yellow")
+            {
+                player1Ready = false;
+            }
+            else if(player2 == "Yellow")
+            {
+                player2Ready = false;
+            }
         }
         else
         {
             yellowReadyStatus.sprite = ready;
+            if(player1 == "Yellow")
+            {
+                player1Ready = true;
+            }
+            else if(player2 == "Yellow")
+            {
+                player2Ready = true;
+            }
         }
     }
 
@@ -220,10 +420,26 @@ public class GameCreationMenu : MonoBehaviour
         if(blueReadyStatus.sprite == ready)
         {
             blueReadyStatus.sprite = notReady;
+            if(player1 == "Blue")
+            {
+                player1Ready = false;
+            }
+            else if(player2 == "Blue")
+            {
+                player2Ready = false;
+            }
         }
         else
         {
             blueReadyStatus.sprite = ready;
+            if(player1 == "Blue")
+            {
+                player1Ready = true;
+            }
+            else if(player2 == "Blue")
+            {
+                player2Ready = true;
+            }
         }
     }
 
@@ -232,10 +448,26 @@ public class GameCreationMenu : MonoBehaviour
         if(redReadyStatus.sprite == ready)
         {
             redReadyStatus.sprite = notReady;
+            if(player1 == "Red")
+            {
+                player1Ready = false;
+            }
+            else if(player2 == "Red")
+            {
+                player2Ready = false;
+            }
         }
         else
         {
             redReadyStatus.sprite = ready;
+            if(player1 == "Red")
+            {
+                player1Ready = true;
+            }
+            else if(player2 == "Red")
+            {
+                player2Ready = true;
+            }
         }
     }
 }

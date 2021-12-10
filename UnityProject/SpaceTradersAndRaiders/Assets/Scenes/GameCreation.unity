@@ -1355,6 +1355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 270667624}
+  - component: {fileID: 270667625}
   m_Layer: 5
   m_Name: Density
   m_TagString: Untagged
@@ -1385,6 +1386,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -95.99997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &270667625
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270667623}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &292006389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,7 +1520,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Map Name Here (Preset only)
+  m_Text: ...
 --- !u!222 &308374775
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4087,7 +4100,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is a test map description for a upcoming soon to be map (Preset only)
+  m_Text: (Not Implemented Yet)
 --- !u!222 &819119133
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4418,14 +4431,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9780291936ac63e43a2378329faefb39, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6972,16 +6985,26 @@ MonoBehaviour:
   densityDisplay: {fileID: 683083603}
   mapDisplay: {fileID: 957808092}
   mapsCanvasGroup: {fileID: 613920727}
+  uniSizeCanvasGroup: {fileID: 2133497521}
+  densityCanvasGroup: {fileID: 270667625}
   Green: {fileID: 67503418}
   Yellow: {fileID: 564402087}
   Blue: {fileID: 74098263}
   Red: {fileID: 1645539848}
+  GreenAdd: {fileID: 525755675}
+  YellowAdd: {fileID: 1860035808}
+  BlueAdd: {fileID: 248638199}
+  RedAdd: {fileID: 2083305325}
   ready: {fileID: 21300000, guid: c526eeeee39db7f4686d79ae1aba0149, type: 3}
   notReady: {fileID: 21300000, guid: 87e2c8b5e99b5124887d7ed5337d5815, type: 3}
   greenReadyStatus: {fileID: 1108604722}
   yellowReadyStatus: {fileID: 683736505}
   blueReadyStatus: {fileID: 1053566506}
   redReadyStatus: {fileID: 1399522774}
+  greenPlayerName: {fileID: 1864967348}
+  yellowPlayerName: {fileID: 716513001}
+  bluePlayerName: {fileID: 268671801}
+  redPlayerName: {fileID: 452033506}
 --- !u!1 &1523955421
 GameObject:
   m_ObjectHideFlags: 0
@@ -7033,7 +7056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0.16862746}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9091,6 +9114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2133497520}
+  - component: {fileID: 2133497521}
   m_Layer: 5
   m_Name: UniverseSize
   m_TagString: Untagged
@@ -9121,3 +9145,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -60.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &2133497521
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133497519}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

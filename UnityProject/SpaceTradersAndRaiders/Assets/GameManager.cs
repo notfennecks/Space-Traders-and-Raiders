@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,11 @@ public class GameManager : MonoBehaviour
     public Text[] player1Currency;
     public Text[] player2Currency;
 
+    public GameObject GreenPlayerCurrencies;
+    public GameObject YellowPlayerCurrencies;
+    public GameObject BluePlayerCurrencies;
+    public GameObject RedPlayerCurrencies;
+
     public Sprite Player1Mine, Player2Mine;
     public Sprite Player1SpaceDock, Player2SpaceDock;
     public GameObject Frigate;
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         DontDestroyOnLoad(this);
+        GlobalData.State = state;
     }
     public void SetState(State state)
     {
@@ -73,14 +80,12 @@ public class GameManager : MonoBehaviour
     public void AssignStartingFacilities()
     {
         //Assign Player 1's mine
-        GameObject.Find(Player1HomeTile + "/" + Player1HomePlanet + "/Facility1").GetComponent<SpriteRenderer>().sprite = Player1Mine;
-        //Assign Player 2's mine
-        GameObject.Find(Player2HomeTile + "/" + Player2HomePlanet + "/Facility1").GetComponent<SpriteRenderer>().sprite = Player2Mine;
-        //Assign Player 1's space dock
-        GameObject.Find(Player1HomeTile + "/" + Player1HomePlanet + "/Facility2").GetComponent<SpriteRenderer>().sprite = Player1SpaceDock;
-        //Assign Player 2's space dock
-        GameObject.Find(Player2HomeTile + "/" + Player2HomePlanet + "/Facility2").GetComponent<SpriteRenderer>().sprite = Player2SpaceDock;
-        SpawnStartingShips();
+        GameObject.Find("UniverseScreen").transform.GetChild(2).GetChild(2).GetChild(GlobalData.Player1HomeSector - 1).GetChild(GlobalData.Player1HomePlanet - 1).GetChild(1).GetComponent<SpriteRenderer>().sprite = Player1Mine;
+        GlobalData.Player1TotalMines++;
+        //Assign Players 2's mine
+        GameObject.Find("UniverseScreen").transform.GetChild(2).GetChild(2).GetChild(GlobalData.Player2HomeSector - 1).GetChild(GlobalData.Player2HomePlanet - 1).GetChild(1).GetComponent<SpriteRenderer>().sprite = Player2Mine;
+        GlobalData.Player2TotalMines++;
+        //SpawnStartingShips();
     }
 
     private void SpawnStartingShips()
@@ -122,6 +127,21 @@ public class GameManager : MonoBehaviour
         {
             buttonPressed = false;
         }
+
+        //Finished with base selection
+        if(GlobalData.BaseSelectTracker == 3)
+        {
+            AssignStartingFacilities();
+            GlobalData.BaseSelectTracker++;
+        }
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            GenerateResources("Player1");
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void Player1Turn()
@@ -139,13 +159,23 @@ public class GameManager : MonoBehaviour
     {
         if(player == "Player1")
         {
-            Debug.Log("Generated Player 1 resources for turn");
-            GlobalData.Player1Stells += 12;
+            Debug.Log("Generated Player 1 resources for turn | Total mines: " + GlobalData.Player1TotalMines);
+            GlobalData.Player1Stells += 12 * GlobalData.Player1TotalMines;
             player1Currency[0].text =  GlobalData.Player1Stells.ToString();    
-            GlobalData.Player1PurpleGalacite += 30;
+            GlobalData.Player1PurpleGalacite += 30 * GlobalData.Player1TotalMines;
             player1Currency[1].text =  GlobalData.Player1PurpleGalacite.ToString();
-            GlobalData.Player1OrangeGalacite += 50;
+            GlobalData.Player1OrangeGalacite += 50 * GlobalData.Player1TotalMines;
             player1Currency[2].text =  GlobalData.Player1OrangeGalacite.ToString();
+        }
+        if(player == "Player2")
+        {
+            Debug.Log("Generated Player 2 resources for turn | Total mines: " + GlobalData.Player2TotalMines);
+            GlobalData.Player2Stells += 12 * GlobalData.Player2TotalMines;
+            player2Currency[0].text =  GlobalData.Player2Stells.ToString();    
+            GlobalData.Player2PurpleGalacite += 30 * GlobalData.Player2TotalMines;
+            player2Currency[1].text =  GlobalData.Player2PurpleGalacite.ToString();
+            GlobalData.Player2OrangeGalacite += 50 * GlobalData.Player2TotalMines;
+            player2Currency[2].text =  GlobalData.Player2OrangeGalacite.ToString();
         }
     }
 
@@ -164,6 +194,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                /*
                 if (hit.collider.tag == "Player" && hit.collider.transform.parent.name != "Player1Obj")
                 {
                     foreach (Transform playerShips in GlobalData.Player1Obj.transform)
@@ -180,6 +211,7 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
+                */
             }
 
         }
